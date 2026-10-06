@@ -1,0 +1,35 @@
+version: 2
+updates:
+  # Root npm dependencies: one grouped PR for minor/patch; majors stay separate
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Types must match the Node version CI runs (node-version in workflows / .nvmrc).
+      # Bump this major together with NODE_VERSION.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
+  # Real-report generator tooling (Playwright, Jest, Cucumber, etc.)
+  - package-ecosystem: npm
+    directory: /tools/real-reports
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      real-reports-npm-minor-and-patch:
+        update-types: [minor, patch]
+
+  # GitHub Actions used in .github/workflows
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ["*"]

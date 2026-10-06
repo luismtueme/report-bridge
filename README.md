@@ -138,6 +138,12 @@ scripts/               Import verification helpers
 - Real CI dumps vary by vendor — odd schemas may need importer tweaks
 - No hosted demo yet (local `npm run dev` only)
 
+## Automation & branch protection
+
+- **CI** (`.github/workflows/ci.yml`): job **Checks** runs `test:imports`, `build`, and `lint` on pushes/PRs to `main`
+- **Dependabot** (`.github/dependabot.yml`): weekly grouped minor/patch updates for root npm, `tools/real-reports` npm, and GitHub Actions
+- **Ruleset “Protect main”**: linear history, squash-only merges, PR required, Conversations must be resolved, **Checks** must pass (same pattern as the other frameworks)
+
 ## License
 
 [MIT](LICENSE)
