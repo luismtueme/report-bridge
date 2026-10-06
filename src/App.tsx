@@ -41,6 +41,15 @@ type RealSampleId =
   | "real-playwright"
   | "real-pytest";
 
+const REAL_SAMPLE_BUTTONS: Array<{ id: RealSampleId; label: string }> = [
+  { id: "real-cucumber", label: "Real Cucumber" },
+  { id: "real-allure", label: "Real Allure" },
+  { id: "real-junit", label: "Real JUnit" },
+  { id: "real-jest", label: "Real Jest" },
+  { id: "real-playwright", label: "Real Playwright" },
+  { id: "real-pytest", label: "Real pytest" },
+];
+
 type UserSampleId =
   | "user-cucumber"
   | "user-allure"
