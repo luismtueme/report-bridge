@@ -28,3 +28,4 @@ tools/real-reports/blob-report
 *.njsproj
 *.sln
 *.sw?
+__pycache__/

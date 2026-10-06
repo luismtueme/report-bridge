@@ -51,6 +51,18 @@ Open [http://localhost:4732](http://localhost:4732).
 
 Sample fixtures live under `public/samples/`.
 
+### Real framework artifacts
+
+Hand-written fixtures are fine for demos, but importers should also be checked against outputs from real runners. This repo includes a generator:
+
+```bash
+npm run generate:real-reports
+```
+
+It writes authentic files to `public/samples/real/` (Jest, pytest, JUnit Surefire, Playwright JSON, Cucumber JSON, Allure results). UI e2e samples hit [Sauce Demo](https://www.saucedemo.com/) so you do not need your own application under test.
+
+In the web UI, use the **Real …** buttons to load those artifacts.
+
 ## MCP
 
 ```json
