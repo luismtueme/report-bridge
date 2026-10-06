@@ -41,13 +41,23 @@ type RealSampleId =
   | "real-playwright"
   | "real-pytest";
 
-const REAL_SAMPLE_BUTTONS: Array<{ id: RealSampleId; label: string }> = [
-  { id: "real-cucumber", label: "Real Cucumber" },
-  { id: "real-allure", label: "Real Allure" },
-  { id: "real-junit", label: "Real JUnit" },
-  { id: "real-jest", label: "Real Jest" },
-  { id: "real-playwright", label: "Real Playwright" },
-  { id: "real-pytest", label: "Real pytest" },
+type UserSampleId =
+  | "user-cucumber"
+  | "user-allure"
+  | "user-junit"
+  | "user-testng"
+  | "user-jest"
+  | "user-playwright"
+  | "user-pytest";
+
+const USER_SAMPLE_BUTTONS: Array<{ id: UserSampleId; label: string }> = [
+  { id: "user-cucumber", label: "Yours: Cucumber" },
+  { id: "user-allure", label: "Yours: Allure" },
+  { id: "user-junit", label: "Yours: JUnit" },
+  { id: "user-testng", label: "Yours: TestNG" },
+  { id: "user-jest", label: "Yours: Jest" },
+  { id: "user-playwright", label: "Yours: Playwright" },
+  { id: "user-pytest", label: "Yours: pytest" },
 ];
 
 async function loadTextSample(
@@ -85,8 +95,23 @@ async function loadRealAllureSample(): Promise<TestRun> {
   return importAllureResults(results, { name: "Real Allure run (Sauce Demo)" });
 }
 
+async function loadUserAllureSample(): Promise<TestRun> {
+  const index = await fetch("/samples/user-all-formats/allure-index.json");
+  const files = (await index.json()) as string[];
+  const results: AllureResult[] = [];
+  for (const file of files) {
+    const fileResponse = await fetch(
+      `/samples/user-all-formats/allure-results/${file}`,
+    );
+    results.push((await fileResponse.json()) as AllureResult);
+  }
+  return importAllureResults(results, {
+    name: "Your Allure pack",
+  });
+}
+
 async function loadSampleRun(
-  id: SampleId | RealSampleId,
+  id: SampleId | RealSampleId | UserSampleId,
 ): Promise<{ run: TestRun; label: string }> {
   switch (id) {
     case "cucumber":
@@ -178,6 +203,59 @@ async function loadSampleRun(
         ),
         label: "Real pytest-json-report",
       };
+    case "user-cucumber":
+      return {
+        run: await loadTextSample(
+          "/samples/user-all-formats/cucumber-report.json",
+          "Your Cucumber pack",
+        ),
+        label: "Your pack · Cucumber JSON",
+      };
+    case "user-allure":
+      return {
+        run: await loadUserAllureSample(),
+        label: "Your pack · Allure results",
+      };
+    case "user-junit":
+      return {
+        run: await loadTextSample(
+          "/samples/user-all-formats/TEST-sample.xml",
+          "Your JUnit pack",
+        ),
+        label: "Your pack · JUnit XML",
+      };
+    case "user-testng":
+      return {
+        run: await loadTextSample(
+          "/samples/user-all-formats/testng-results.xml",
+          "Your TestNG pack",
+        ),
+        label: "Your pack · TestNG XML",
+      };
+    case "user-jest":
+      return {
+        run: await loadTextSample(
+          "/samples/user-all-formats/jest-report.json",
+          "Your Jest pack",
+        ),
+        label: "Your pack · Jest JSON",
+      };
+    case "user-playwright":
+      return {
+        run: await loadTextSample(
+          "/samples/user-all-formats/playwright-report.json",
+          "Your Playwright pack",
+        ),
+        label: "Your pack · Playwright JSON",
+      };
+    case "user-pytest":
+      return {
+        run: await loadTextSample(
+          "/samples/user-all-formats/pytest-report.json",
+          "Your pytest pack",
+        ),
+        label: "Your pack · pytest JSON",
+      };
   }
 }
 
@@ -194,9 +272,9 @@ export default function App() {
   const [activeSkin, setActiveSkin] = useState<ReportSkinId>("cucumber");
   const [compareMode, setCompareMode] = useState(false);
   const [sourceLabel, setSourceLabel] = useState("Sample Cucumber JSON");
-  const [activeSample, setActiveSample] = useState<SampleId | RealSampleId>(
-    "cucumber",
-  );
+  const [activeSample, setActiveSample] = useState<
+    SampleId | RealSampleId | UserSampleId
+  >("cucumber");
 
   useEffect(() => {
     void (async () => {
@@ -215,7 +293,7 @@ export default function App() {
   const summary = useMemo(() => (run ? summarizeRun(run) : null), [run]);
   const notes = useMemo(() => (run ? skinComparisonNotes(run) : []), [run]);
 
-  async function loadSample(id: SampleId | RealSampleId) {
+  async function loadSample(id: SampleId | RealSampleId | UserSampleId) {
     setLoading(true);
     setError(null);
     try {
@@ -300,6 +378,20 @@ export default function App() {
             </div>
             <div className="sample-row" role="group" aria-label="Real framework artifacts">
               {REAL_SAMPLE_BUTTONS.map((sample) => (
+                <button
+                  key={sample.id}
+                  type="button"
+                  className={
+                    activeSample === sample.id ? "btn primary" : "btn"
+                  }
+                  onClick={() => void loadSample(sample.id)}
+                >
+                  {sample.label}
+                </button>
+              ))}
+            </div>
+            <div className="sample-row" role="group" aria-label="Your all-format sample pack">
+              {USER_SAMPLE_BUTTONS.map((sample) => (
                 <button
                   key={sample.id}
                   type="button"

@@ -1,0 +1,45 @@
+{
+  "uuid": "17b2fee0-a674-40dc-b440-6d3617ed3ecd",
+  "historyId": "profile-upload-photo",
+  "testCaseId": "profile-upload-photo",
+  "fullName": "tests.ProfileTests.profile_upload_photo",
+  "name": "Upload profile photo",
+  "status": "skipped",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Navigate to Profile",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319510001
+    },
+    {
+      "name": "Open profile photo upload dialog",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319510101
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Profile"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319510000,
+  "statusDetails": {
+    "message": "PROFILE_IMAGE_UPLOAD=false",
+    "trace": "PROFILE_IMAGE_UPLOAD=false"
+  }
+}

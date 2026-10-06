@@ -1,0 +1,66 @@
+{
+  "uuid": "d7f7408d-a10f-4452-b1c7-4ce98f47e07a",
+  "historyId": "login-invalid-password",
+  "testCaseId": "login-invalid-password",
+  "fullName": "tests.LoginTests.login_invalid_password",
+  "name": "Invalid password",
+  "status": "failed",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Navigate to login page",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319511024
+    },
+    {
+      "name": "Enter username: test.user@example.com",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319511124
+    },
+    {
+      "name": "Enter invalid password",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510200,
+      "stop": 1791319511224
+    },
+    {
+      "name": "Click Login button",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510300,
+      "stop": 1791319511324
+    },
+    {
+      "name": "Verify invalid credentials message",
+      "status": "failed",
+      "stage": "finished",
+      "start": 1791319510400,
+      "stop": 1791319511424
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Login"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319515121,
+  "statusDetails": {
+    "message": "Expected: Invalid username or password\nActual: Something went wrong. Please try again.",
+    "trace": "java.lang.AssertionError: Expected invalid credentials message was not displayed\n    at tests.LoginTests.testInvalidPassword(LoginTests.java:87)"
+  }
+}

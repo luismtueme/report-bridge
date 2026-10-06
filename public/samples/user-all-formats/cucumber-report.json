@@ -1,0 +1,556 @@
+[
+  {
+    "uri": "features/login.feature",
+    "id": "login-feature",
+    "keyword": "Feature",
+    "name": "Login Feature",
+    "line": 1,
+    "elements": [
+      {
+        "id": "login-valid",
+        "keyword": "Scenario",
+        "name": "Valid login",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Navigate to https://example.test/login",
+            "line": 3,
+            "match": {
+              "location": "steps/login_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 876400000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Enter username: test.user@example.com",
+            "line": 4,
+            "match": {
+              "location": "steps/login_steps.py:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 876400000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Enter valid password",
+            "line": 5,
+            "match": {
+              "location": "steps/login_steps.py:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 876400000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Click Login button",
+            "line": 6,
+            "match": {
+              "location": "steps/login_steps.py:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 876400000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Verify dashboard is displayed",
+            "line": 7,
+            "match": {
+              "location": "steps/login_steps.py:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 876400000
+            }
+          }
+        ]
+      },
+      {
+        "id": "login-invalid-password",
+        "keyword": "Scenario",
+        "name": "Invalid password",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Navigate to login page",
+            "line": 3,
+            "match": {
+              "location": "steps/login_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1024200000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Enter username: test.user@example.com",
+            "line": 4,
+            "match": {
+              "location": "steps/login_steps.py:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1024200000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Enter invalid password",
+            "line": 5,
+            "match": {
+              "location": "steps/login_steps.py:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1024200000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Click Login button",
+            "line": 6,
+            "match": {
+              "location": "steps/login_steps.py:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1024200000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Verify invalid credentials message",
+            "line": 7,
+            "match": {
+              "location": "steps/login_steps.py:15"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 1024200000,
+              "error_message": "Expected: Invalid username or password\nActual: Something went wrong. Please try again."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/search.feature",
+    "id": "search-feature",
+    "keyword": "Feature",
+    "name": "Search Feature",
+    "line": 1,
+    "elements": [
+      {
+        "id": "search-product",
+        "keyword": "Scenario",
+        "name": "Product search",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Open product search page",
+            "line": 3,
+            "match": {
+              "location": "steps/search_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 753000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Search for \"Wireless Headphones\"",
+            "line": 4,
+            "match": {
+              "location": "steps/search_steps.py:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 753000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Submit search",
+            "line": 5,
+            "match": {
+              "location": "steps/search_steps.py:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 753000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Verify search results are returned",
+            "line": 6,
+            "match": {
+              "location": "steps/search_steps.py:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 753000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Verify first result contains requested keyword",
+            "line": 7,
+            "match": {
+              "location": "steps/search_steps.py:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 753000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "search-filters",
+        "keyword": "Scenario",
+        "name": "Search filters",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Open product search page",
+            "line": 3,
+            "match": {
+              "location": "steps/search_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Apply price filter",
+            "line": 4,
+            "match": {
+              "location": "steps/search_steps.py:12"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/checkout.feature",
+    "id": "checkout-feature",
+    "keyword": "Feature",
+    "name": "Checkout Feature",
+    "line": 1,
+    "elements": [
+      {
+        "id": "checkout-success",
+        "keyword": "Scenario",
+        "name": "Successful checkout",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Add product to cart",
+            "line": 3,
+            "match": {
+              "location": "steps/checkout_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274428571
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Open shopping cart",
+            "line": 4,
+            "match": {
+              "location": "steps/checkout_steps.py:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274428571
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Click Checkout",
+            "line": 5,
+            "match": {
+              "location": "steps/checkout_steps.py:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274428571
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Enter shipping information",
+            "line": 6,
+            "match": {
+              "location": "steps/checkout_steps.py:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274428571
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Enter payment details",
+            "line": 7,
+            "match": {
+              "location": "steps/checkout_steps.py:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274428571
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Submit order",
+            "line": 8,
+            "match": {
+              "location": "steps/checkout_steps.py:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274428571
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Verify confirmation number is displayed",
+            "line": 9,
+            "match": {
+              "location": "steps/checkout_steps.py:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1274428571
+            }
+          }
+        ]
+      },
+      {
+        "id": "checkout-declined-card",
+        "keyword": "Scenario",
+        "name": "Declined credit card",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Add product to cart",
+            "line": 3,
+            "match": {
+              "location": "steps/checkout_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1422000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Navigate to checkout",
+            "line": 4,
+            "match": {
+              "location": "steps/checkout_steps.py:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1422000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Enter declined test credit card",
+            "line": 5,
+            "match": {
+              "location": "steps/checkout_steps.py:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1422000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Submit payment",
+            "line": 6,
+            "match": {
+              "location": "steps/checkout_steps.py:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1422000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Verify payment declined message",
+            "line": 7,
+            "match": {
+              "location": "steps/checkout_steps.py:15"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 1422000000,
+              "error_message": "Expected HTTP status: 402\nActual HTTP status: 500"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/profile.feature",
+    "id": "profile-feature",
+    "keyword": "Feature",
+    "name": "Profile Feature",
+    "line": 1,
+    "elements": [
+      {
+        "id": "profile-update",
+        "keyword": "Scenario",
+        "name": "Update profile",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Login as existing user",
+            "line": 3,
+            "match": {
+              "location": "steps/profile_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871666666
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Navigate to Profile",
+            "line": 4,
+            "match": {
+              "location": "steps/profile_steps.py:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871666666
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Update phone number",
+            "line": 5,
+            "match": {
+              "location": "steps/profile_steps.py:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871666666
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Click Save",
+            "line": 6,
+            "match": {
+              "location": "steps/profile_steps.py:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871666666
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "Refresh page",
+            "line": 7,
+            "match": {
+              "location": "steps/profile_steps.py:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871666666
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Verify updated phone number persists",
+            "line": 8,
+            "match": {
+              "location": "steps/profile_steps.py:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871666666
+            }
+          }
+        ]
+      },
+      {
+        "id": "profile-upload-photo",
+        "keyword": "Scenario",
+        "name": "Upload profile photo",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "Navigate to Profile",
+            "line": 3,
+            "match": {
+              "location": "steps/profile_steps.py:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Open profile photo upload dialog",
+            "line": 4,
+            "match": {
+              "location": "steps/profile_steps.py:12"
+            },
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

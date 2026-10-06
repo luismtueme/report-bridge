@@ -1,0 +1,62 @@
+{
+  "uuid": "3e75cd7f-8eea-4fed-8370-2b912df8543c",
+  "historyId": "search-product",
+  "testCaseId": "search-product",
+  "fullName": "tests.SearchTests.search_product",
+  "name": "Product search",
+  "status": "passed",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Open product search page",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319510753
+    },
+    {
+      "name": "Search for \"Wireless Headphones\"",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319510853
+    },
+    {
+      "name": "Submit search",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510200,
+      "stop": 1791319510953
+    },
+    {
+      "name": "Verify search results are returned",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510300,
+      "stop": 1791319511053
+    },
+    {
+      "name": "Verify first result contains requested keyword",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510400,
+      "stop": 1791319511153
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Search"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319513765
+}

@@ -1,0 +1,62 @@
+{
+  "uuid": "84bd5cfc-8ff7-4a60-aea8-cf35fe3c32c1",
+  "historyId": "login-valid",
+  "testCaseId": "login-valid",
+  "fullName": "tests.LoginTests.login_valid",
+  "name": "Valid login",
+  "status": "passed",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Navigate to https://example.test/login",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319510876
+    },
+    {
+      "name": "Enter username: test.user@example.com",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319510976
+    },
+    {
+      "name": "Enter valid password",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510200,
+      "stop": 1791319511076
+    },
+    {
+      "name": "Click Login button",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510300,
+      "stop": 1791319511176
+    },
+    {
+      "name": "Verify dashboard is displayed",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510400,
+      "stop": 1791319511276
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Login"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319514382
+}

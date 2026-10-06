@@ -1,0 +1,190 @@
+{
+  "numFailedTestSuites": 2,
+  "numFailedTests": 2,
+  "numPassedTestSuites": 2,
+  "numPassedTests": 4,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 2,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 4,
+  "numTotalTests": 8,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1791319510000,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Login Tests"
+          ],
+          "fullName": "Login Tests Valid login",
+          "status": "passed",
+          "title": "Valid login",
+          "duration": 4382,
+          "failureMessages": [],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        },
+        {
+          "ancestorTitles": [
+            "Login Tests"
+          ],
+          "fullName": "Login Tests Invalid password",
+          "status": "failed",
+          "title": "Invalid password",
+          "duration": 5121,
+          "failureMessages": [
+            "Expected: Invalid username or password\nActual: Something went wrong. Please try again."
+          ],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        }
+      ],
+      "endTime": 1791319558000,
+      "message": "",
+      "name": "/tests/login.test.ts",
+      "startTime": 1791319510000,
+      "status": "failed",
+      "summary": ""
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Search Tests"
+          ],
+          "fullName": "Search Tests Product search",
+          "status": "passed",
+          "title": "Product search",
+          "duration": 3765,
+          "failureMessages": [],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        },
+        {
+          "ancestorTitles": [
+            "Search Tests"
+          ],
+          "fullName": "Search Tests Search filters",
+          "status": "pending",
+          "title": "Search filters",
+          "duration": 0,
+          "failureMessages": [],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        }
+      ],
+      "endTime": 1791319558000,
+      "message": "",
+      "name": "/tests/search.test.ts",
+      "startTime": 1791319510000,
+      "status": "passed",
+      "summary": ""
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Checkout Tests"
+          ],
+          "fullName": "Checkout Tests Successful checkout",
+          "status": "passed",
+          "title": "Successful checkout",
+          "duration": 8921,
+          "failureMessages": [],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        },
+        {
+          "ancestorTitles": [
+            "Checkout Tests"
+          ],
+          "fullName": "Checkout Tests Declined credit card",
+          "status": "failed",
+          "title": "Declined credit card",
+          "duration": 7110,
+          "failureMessages": [
+            "Expected HTTP status: 402\nActual HTTP status: 500"
+          ],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        }
+      ],
+      "endTime": 1791319558000,
+      "message": "",
+      "name": "/tests/checkout.test.ts",
+      "startTime": 1791319510000,
+      "status": "failed",
+      "summary": ""
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Profile Tests"
+          ],
+          "fullName": "Profile Tests Update profile",
+          "status": "passed",
+          "title": "Update profile",
+          "duration": 5230,
+          "failureMessages": [],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        },
+        {
+          "ancestorTitles": [
+            "Profile Tests"
+          ],
+          "fullName": "Profile Tests Upload profile photo",
+          "status": "pending",
+          "title": "Upload profile photo",
+          "duration": 0,
+          "failureMessages": [],
+          "location": {
+            "line": 10,
+            "column": 3
+          }
+        }
+      ],
+      "endTime": 1791319558000,
+      "message": "",
+      "name": "/tests/profile.test.ts",
+      "startTime": 1791319510000,
+      "status": "passed",
+      "summary": ""
+    }
+  ],
+  "wasInterrupted": false
+}

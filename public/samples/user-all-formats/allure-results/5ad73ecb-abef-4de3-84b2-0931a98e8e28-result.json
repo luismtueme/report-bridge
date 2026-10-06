@@ -1,0 +1,66 @@
+{
+  "uuid": "5ad73ecb-abef-4de3-84b2-0931a98e8e28",
+  "historyId": "checkout-declined-card",
+  "testCaseId": "checkout-declined-card",
+  "fullName": "tests.CheckoutTests.checkout_declined_card",
+  "name": "Declined credit card",
+  "status": "failed",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Add product to cart",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319511422
+    },
+    {
+      "name": "Navigate to checkout",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319511522
+    },
+    {
+      "name": "Enter declined test credit card",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510200,
+      "stop": 1791319511622
+    },
+    {
+      "name": "Submit payment",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510300,
+      "stop": 1791319511722
+    },
+    {
+      "name": "Verify payment declined message",
+      "status": "failed",
+      "stage": "finished",
+      "start": 1791319510400,
+      "stop": 1791319511822
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Checkout"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319517110,
+  "statusDetails": {
+    "message": "Expected HTTP status: 402\nActual HTTP status: 500",
+    "trace": "java.lang.AssertionError: Unexpected payment response status\n    at tests.CheckoutTests.testDeclinedCreditCard(CheckoutTests.java:142)"
+  }
+}

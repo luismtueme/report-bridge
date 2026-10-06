@@ -26,6 +26,10 @@ type PlaywrightStep = {
   steps?: PlaywrightStep[];
 };
 
+type PlaywrightStdout = {
+  text?: string;
+};
+
 type PlaywrightResult = {
   status?: string;
   duration?: number;
@@ -35,10 +39,13 @@ type PlaywrightResult = {
   startTime?: string;
   attachments?: PlaywrightAttachment[];
   steps?: PlaywrightStep[];
+  stdout?: PlaywrightStdout[];
+  stderr?: PlaywrightStdout[];
 };
 
 type PlaywrightTest = {
   title?: string;
+  status?: string;
   results?: PlaywrightResult[];
 };
 
@@ -101,6 +108,33 @@ function mapStep(step: PlaywrightStep): Step {
   };
 }
 
+function mapStdoutSteps(
+  stdout: PlaywrightStdout[] | undefined,
+  testStatus: TestStatus,
+): Step[] {
+  const lines = (stdout ?? [])
+    .map((entry) => entry.text?.trim())
+    .filter((line): line is string => Boolean(line));
+  if (!lines.length) return [];
+
+  return lines.map((line, index) => {
+    const isLast = index === lines.length - 1;
+    const looksLikeResult = /^RESULT:/i.test(line);
+    let status: TestStatus = "passed";
+    if (isLast || looksLikeResult) {
+      status =
+        testStatus === "failed" || testStatus === "broken"
+          ? testStatus
+          : testStatus === "skipped" || testStatus === "pending"
+            ? testStatus
+            : "passed";
+    } else if (testStatus === "skipped" || testStatus === "pending") {
+      status = testStatus;
+    }
+    return { name: line, status };
+  });
+}
+
 function pickResult(results: PlaywrightResult[] | undefined): PlaywrightResult | undefined {
   if (!results?.length) return undefined;
   // Prefer the last attempt (Playwright retries append results).
@@ -131,8 +165,13 @@ function mapSpec(
     ...(result?.errors ?? []),
     ...(result?.error ? [result.error] : []),
   ];
-  const status = mapStatus(result?.status);
+  const status = mapStatus(result?.status ?? test?.status);
   const name = entry.spec.title ?? `Spec ${index + 1}`;
+  const nativeSteps = (result?.steps ?? []).map(mapStep);
+  const steps =
+    nativeSteps.length > 0
+      ? nativeSteps
+      : mapStdoutSteps(result?.stdout, status);
 
   return {
     id: `${entry.path.join("›")}::${name}::${index}`,
@@ -146,7 +185,7 @@ function mapSpec(
     ],
     errorMessage: errors[0]?.message,
     stackTrace: errors[0]?.stack,
-    steps: (result?.steps ?? []).map(mapStep),
+    steps,
     attachments: (result?.attachments ?? []).map((attachment) => ({
       name: attachment.name ?? "attachment",
       type: attachment.contentType,

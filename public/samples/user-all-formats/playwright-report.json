@@ -1,0 +1,483 @@
+{
+  "config": {
+    "configFile": "playwright.config.ts",
+    "rootDir": "tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "workers": 4,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "playwright-report.json"
+        }
+      ]
+    ],
+    "projects": [
+      {
+        "name": "chromium",
+        "testDir": "tests"
+      }
+    ]
+  },
+  "suites": [
+    {
+      "title": "Login tests",
+      "file": "tests/login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Valid login",
+          "ok": true,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 4382,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Navigate to https://example.test/login\n"
+                    },
+                    {
+                      "text": "Enter username: test.user@example.com\n"
+                    },
+                    {
+                      "text": "Enter valid password\n"
+                    },
+                    {
+                      "text": "Click Login button\n"
+                    },
+                    {
+                      "text": "Verify dashboard is displayed\n"
+                    },
+                    {
+                      "text": "RESULT: User logged in successfully\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "login-valid",
+          "file": "tests/login.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "Invalid password",
+          "ok": false,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "failed",
+                  "duration": 5121,
+                  "errors": [
+                    {
+                      "message": "Expected: Invalid username or password\nActual: Something went wrong. Please try again.",
+                      "stack": "java.lang.AssertionError: Expected invalid credentials message was not displayed\n    at tests.LoginTests.testInvalidPassword(LoginTests.java:87)"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "Navigate to login page\n"
+                    },
+                    {
+                      "text": "Enter username: test.user@example.com\n"
+                    },
+                    {
+                      "text": "Enter invalid password\n"
+                    },
+                    {
+                      "text": "Click Login button\n"
+                    },
+                    {
+                      "text": "Verify invalid credentials message\n"
+                    },
+                    {
+                      "text": "RESULT: Expected error message was not displayed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "login-invalid-password",
+          "file": "tests/login.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "Search tests",
+      "file": "tests/search.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Product search",
+          "ok": true,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 3765,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Open product search page\n"
+                    },
+                    {
+                      "text": "Search for \"Wireless Headphones\"\n"
+                    },
+                    {
+                      "text": "Submit search\n"
+                    },
+                    {
+                      "text": "Verify search results are returned\n"
+                    },
+                    {
+                      "text": "Verify first result contains requested keyword\n"
+                    },
+                    {
+                      "text": "RESULT: Search returned 24 matching products\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "search-product",
+          "file": "tests/search.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "Search filters",
+          "ok": false,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "skipped",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Open product search page\n"
+                    },
+                    {
+                      "text": "Apply price filter\n"
+                    },
+                    {
+                      "text": "RESULT: Skipped because test data service was unavailable\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "search-filters",
+          "file": "tests/search.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "Checkout tests",
+      "file": "tests/checkout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Successful checkout",
+          "ok": true,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 8921,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Add product to cart\n"
+                    },
+                    {
+                      "text": "Open shopping cart\n"
+                    },
+                    {
+                      "text": "Click Checkout\n"
+                    },
+                    {
+                      "text": "Enter shipping information\n"
+                    },
+                    {
+                      "text": "Enter payment details\n"
+                    },
+                    {
+                      "text": "Submit order\n"
+                    },
+                    {
+                      "text": "Verify confirmation number is displayed\n"
+                    },
+                    {
+                      "text": "RESULT: Order created successfully: ORD-20261006-1842\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "checkout-success",
+          "file": "tests/checkout.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "Declined credit card",
+          "ok": false,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "failed",
+                  "duration": 7110,
+                  "errors": [
+                    {
+                      "message": "Expected HTTP status: 402\nActual HTTP status: 500",
+                      "stack": "java.lang.AssertionError: Unexpected payment response status\n    at tests.CheckoutTests.testDeclinedCreditCard(CheckoutTests.java:142)"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "Add product to cart\n"
+                    },
+                    {
+                      "text": "Navigate to checkout\n"
+                    },
+                    {
+                      "text": "Enter declined test credit card\n"
+                    },
+                    {
+                      "text": "Submit payment\n"
+                    },
+                    {
+                      "text": "Verify payment declined message\n"
+                    },
+                    {
+                      "text": "RESULT: Payment API returned HTTP 500 instead of expected HTTP 402\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "checkout-declined-card",
+          "file": "tests/checkout.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "Profile tests",
+      "file": "tests/profile.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Update profile",
+          "ok": true,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 5230,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Login as existing user\n"
+                    },
+                    {
+                      "text": "Navigate to Profile\n"
+                    },
+                    {
+                      "text": "Update phone number\n"
+                    },
+                    {
+                      "text": "Click Save\n"
+                    },
+                    {
+                      "text": "Refresh page\n"
+                    },
+                    {
+                      "text": "Verify updated phone number persists\n"
+                    },
+                    {
+                      "text": "RESULT: Profile updated successfully\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "profile-update",
+          "file": "tests/profile.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "Upload profile photo",
+          "ok": false,
+          "tags": [
+            "@regression"
+          ],
+          "tests": [
+            {
+              "timeout": 30000,
+              "expectedStatus": "skipped",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Navigate to Profile\n"
+                    },
+                    {
+                      "text": "Open profile photo upload dialog\n"
+                    },
+                    {
+                      "text": "RESULT: Skipped because image upload feature flag is disabled in QA\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-06T18:05:10.000Z",
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "profile-upload-photo",
+          "file": "tests/profile.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T18:05:10.000Z",
+    "duration": 48231,
+    "expected": 4,
+    "unexpected": 2,
+    "flaky": 0,
+    "skipped": 2
+  }
+}

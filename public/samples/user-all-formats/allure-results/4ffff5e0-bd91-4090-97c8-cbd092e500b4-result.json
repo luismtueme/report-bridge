@@ -1,0 +1,69 @@
+{
+  "uuid": "4ffff5e0-bd91-4090-97c8-cbd092e500b4",
+  "historyId": "profile-update",
+  "testCaseId": "profile-update",
+  "fullName": "tests.ProfileTests.profile_update",
+  "name": "Update profile",
+  "status": "passed",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Login as existing user",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319510871
+    },
+    {
+      "name": "Navigate to Profile",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319510971
+    },
+    {
+      "name": "Update phone number",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510200,
+      "stop": 1791319511071
+    },
+    {
+      "name": "Click Save",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510300,
+      "stop": 1791319511171
+    },
+    {
+      "name": "Refresh page",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510400,
+      "stop": 1791319511271
+    },
+    {
+      "name": "Verify updated phone number persists",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510500,
+      "stop": 1791319511371
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Profile"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319515230
+}

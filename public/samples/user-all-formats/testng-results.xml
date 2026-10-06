@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="8" passed="4" failed="2" skipped="2">
+<suite name="E2E Automation Suite" duration-ms="48231">
+<test name="Web Regression Tests">
+<class name="tests.SampleAutomationTests">
+<test-method status="PASSED" name="login-valid" duration-ms="4382">
+<reporter-output><line>STEP 1: Navigate to https://example.test/login</line><line>STEP 2: Enter username: test.user@example.com</line><line>STEP 3: Enter valid password</line><line>STEP 4: Click Login button</line><line>STEP 5: Verify dashboard is displayed</line><line>RESULT: User logged in successfully</line></reporter-output></test-method>
+<test-method status="FAILED" name="login-invalid-password" duration-ms="5121">
+<reporter-output><line>STEP 1: Navigate to login page</line><line>STEP 2: Enter username: test.user@example.com</line><line>STEP 3: Enter invalid password</line><line>STEP 4: Click Login button</line><line>STEP 5: Verify invalid credentials message</line><line>RESULT: Expected error message was not displayed</line></reporter-output><exception class="java.lang.AssertionError"><message><![CDATA[Expected: Invalid username or password
+Actual: Something went wrong. Please try again.]]></message><full-stacktrace><![CDATA[java.lang.AssertionError: Expected invalid credentials message was not displayed
+    at tests.LoginTests.testInvalidPassword(LoginTests.java:87)]]></full-stacktrace></exception></test-method>
+<test-method status="PASSED" name="search-product" duration-ms="3765">
+<reporter-output><line>STEP 1: Open product search page</line><line>STEP 2: Search for &quot;Wireless Headphones&quot;</line><line>STEP 3: Submit search</line><line>STEP 4: Verify search results are returned</line><line>STEP 5: Verify first result contains requested keyword</line><line>RESULT: Search returned 24 matching products</line></reporter-output></test-method>
+<test-method status="SKIP" name="search-filters" duration-ms="0">
+<reporter-output><line>STEP 1: Open product search page</line><line>STEP 2: Apply price filter</line><line>RESULT: Skipped because test data service was unavailable</line></reporter-output><exception class="org.testng.SkipException"><message><![CDATA[Required pricing test data could not be loaded.]]></message></exception></test-method>
+<test-method status="PASSED" name="checkout-success" duration-ms="8921">
+<reporter-output><line>STEP 1: Add product to cart</line><line>STEP 2: Open shopping cart</line><line>STEP 3: Click Checkout</line><line>STEP 4: Enter shipping information</line><line>STEP 5: Enter payment details</line><line>STEP 6: Submit order</line><line>STEP 7: Verify confirmation number is displayed</line><line>RESULT: Order created successfully: ORD-20261006-1842</line></reporter-output></test-method>
+<test-method status="FAILED" name="checkout-declined-card" duration-ms="7110">
+<reporter-output><line>STEP 1: Add product to cart</line><line>STEP 2: Navigate to checkout</line><line>STEP 3: Enter declined test credit card</line><line>STEP 4: Submit payment</line><line>STEP 5: Verify payment declined message</line><line>RESULT: Payment API returned HTTP 500 instead of expected HTTP 402</line></reporter-output><exception class="java.lang.AssertionError"><message><![CDATA[Expected HTTP status: 402
+Actual HTTP status: 500]]></message><full-stacktrace><![CDATA[java.lang.AssertionError: Unexpected payment response status
+    at tests.CheckoutTests.testDeclinedCreditCard(CheckoutTests.java:142)]]></full-stacktrace></exception></test-method>
+<test-method status="PASSED" name="profile-update" duration-ms="5230">
+<reporter-output><line>STEP 1: Login as existing user</line><line>STEP 2: Navigate to Profile</line><line>STEP 3: Update phone number</line><line>STEP 4: Click Save</line><line>STEP 5: Refresh page</line><line>STEP 6: Verify updated phone number persists</line><line>RESULT: Profile updated successfully</line></reporter-output></test-method>
+<test-method status="SKIP" name="profile-upload-photo" duration-ms="0">
+<reporter-output><line>STEP 1: Navigate to Profile</line><line>STEP 2: Open profile photo upload dialog</line><line>RESULT: Skipped because image upload feature flag is disabled in QA</line></reporter-output><exception class="org.testng.SkipException"><message><![CDATA[PROFILE_IMAGE_UPLOAD=false]]></message></exception></test-method>
+</class>
+</test>
+</suite>
+</testng-results>

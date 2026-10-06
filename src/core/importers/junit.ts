@@ -12,9 +12,14 @@ const parser = new XMLParser({
   attributeNamePrefix: "@_",
   textNodeName: "#text",
   isArray: (name) =>
-    ["testsuite", "testcase", "property", "failure", "error", "skipped"].includes(
-      name,
-    ),
+    [
+      "testsuite",
+      "testcase",
+      "property",
+      "failure",
+      "error",
+      "skipped",
+    ].includes(name),
 });
 
 type XmlNode = Record<string, unknown>;
@@ -47,6 +52,44 @@ function secondsToMs(value?: string): number | undefined {
   return Math.round(seconds * 1000);
 }
 
+function mapPropertySteps(
+  node: XmlNode,
+  testStatus: TestStatus,
+): import("../ir").Step[] {
+  const propsNode = node.properties as XmlNode | undefined;
+  const properties = asArray(
+    propsNode?.property as XmlNode | XmlNode[] | undefined,
+  );
+  const steps = properties
+    .map((property) => {
+      const key = attr(property, "name") ?? "";
+      const match = /^step\.(\d+)$/i.exec(key);
+      if (!match) return null;
+      return {
+        order: Number(match[1]),
+        name: attr(property, "value") ?? textContent(property) ?? key,
+      };
+    })
+    .filter((item): item is { order: number; name: string } => item != null)
+    .sort((a, b) => a.order - b.order);
+
+  if (!steps.length) return [];
+
+  return steps.map((step, index) => ({
+    name: `Step ${step.order}: ${step.name}`,
+    status:
+      index === steps.length - 1 &&
+      (testStatus === "failed" ||
+        testStatus === "broken" ||
+        testStatus === "skipped" ||
+        testStatus === "pending")
+        ? testStatus
+        : testStatus === "skipped" || testStatus === "pending"
+          ? testStatus
+          : "passed",
+  }));
+}
+
 function mapCase(node: XmlNode, index: number, suiteName: string): TestCase {
   const failures = asArray(node.failure as XmlNode | XmlNode[] | undefined);
   const errors = asArray(node.error as XmlNode | XmlNode[] | undefined);
@@ -73,6 +116,7 @@ function mapCase(node: XmlNode, index: number, suiteName: string): TestCase {
 
   const className = attr(node, "classname");
   const name = attr(node, "name") ?? `Test ${index + 1}`;
+  const systemOut = textContent(node["system-out"]);
 
   return {
     id: `${suiteName}::${className ?? "case"}::${name}::${index}`,
@@ -81,10 +125,11 @@ function mapCase(node: XmlNode, index: number, suiteName: string): TestCase {
     status,
     durationMs: secondsToMs(attr(node, "time")),
     tags: className ? [className] : [],
+    description: systemOut,
     errorMessage,
     stackTrace:
       stackTrace && stackTrace !== errorMessage ? stackTrace : undefined,
-    steps: [],
+    steps: mapPropertySteps(node, status),
     attachments: [],
   };
 }

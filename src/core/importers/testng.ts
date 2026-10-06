@@ -12,9 +12,16 @@ const parser = new XMLParser({
   attributeNamePrefix: "@_",
   textNodeName: "#text",
   isArray: (name) =>
-    ["suite", "test", "class", "test-method", "group", "param", "exception"].includes(
-      name,
-    ),
+    [
+      "suite",
+      "test",
+      "class",
+      "test-method",
+      "group",
+      "param",
+      "exception",
+      "line",
+    ].includes(name),
 });
 
 type XmlNode = Record<string, unknown>;
@@ -44,16 +51,51 @@ function textContent(node: unknown): string | undefined {
 function mapStatus(status?: string): TestStatus {
   switch ((status ?? "").toUpperCase()) {
     case "PASS":
+    case "PASSED":
+    case "SUCCESS":
       return "passed";
     case "FAIL":
+    case "FAILED":
+    case "FAILURE":
       return "failed";
     case "SKIP":
+    case "SKIPPED":
       return "skipped";
     case "IGNORE":
+    case "IGNORED":
       return "pending";
     default:
       return "unknown";
   }
+}
+
+function mapReporterSteps(
+  method: XmlNode,
+  testStatus: TestStatus,
+): import("../ir").Step[] {
+  const output = method["reporter-output"] as XmlNode | undefined;
+  const lines = asArray(output?.line as unknown)
+    .map((line) => textContent(line)?.trim())
+    .filter((line): line is string => Boolean(line));
+
+  if (!lines.length) return [];
+
+  return lines.map((line, index) => {
+    const isLast = index === lines.length - 1;
+    const looksLikeResult = /^RESULT:/i.test(line);
+    let status: TestStatus = "passed";
+    if (isLast || looksLikeResult) {
+      status =
+        testStatus === "failed" || testStatus === "broken"
+          ? testStatus
+          : testStatus === "skipped" || testStatus === "pending"
+            ? testStatus
+            : "passed";
+    } else if (testStatus === "skipped" || testStatus === "pending") {
+      status = testStatus;
+    }
+    return { name: line, status };
+  });
 }
 
 function mapMethod(
@@ -80,6 +122,7 @@ function mapMethod(
 
   const durationRaw = attr(method, "duration-ms");
   const durationMs = durationRaw != null ? Number(durationRaw) : undefined;
+  const steps = mapReporterSteps(method, status);
 
   return {
     id: `${className}::${name}::${attr(method, "started-at") ?? index}`,
@@ -93,12 +136,12 @@ function mapMethod(
         attr(exception, "class") ??
         textContent(exception)
       : undefined,
-    stackTrace: exception ? textContent(exception["full-stacktrace"]) : undefined,
-    steps: [],
-    attachments: [],
-    parameters: params.length
-      ? Object.fromEntries(params)
+    stackTrace: exception
+      ? textContent(exception["full-stacktrace"])
       : undefined,
+    steps,
+    attachments: [],
+    parameters: params.length ? Object.fromEntries(params) : undefined,
   };
 }
 

@@ -1,0 +1,45 @@
+{
+  "uuid": "91b7b20f-99e4-472c-a4b0-85c5412c0f1a",
+  "historyId": "search-filters",
+  "testCaseId": "search-filters",
+  "fullName": "tests.SearchTests.search_filters",
+  "name": "Search filters",
+  "status": "skipped",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Open product search page",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319510001
+    },
+    {
+      "name": "Apply price filter",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319510101
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Search"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319510000,
+  "statusDetails": {
+    "message": "Required pricing test data could not be loaded.",
+    "trace": "Required pricing test data could not be loaded."
+  }
+}

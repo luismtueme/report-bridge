@@ -1,0 +1,335 @@
+{
+  "created": 1791319558.231,
+  "duration": 48.231,
+  "exitcode": 1,
+  "root": "/project",
+  "environment": {
+    "Python": "3.12.7",
+    "Platform": "linux",
+    "Packages": {
+      "pytest": "8.3.3",
+      "pytest-json-report": "1.5.0"
+    }
+  },
+  "summary": {
+    "passed": 4,
+    "failed": 2,
+    "skipped": 2,
+    "total": 8,
+    "collected": 8
+  },
+  "collectors": [],
+  "tests": [
+    {
+      "nodeid": "tests/test_login.py::test_login_valid",
+      "lineno": 10,
+      "outcome": "passed",
+      "keywords": [
+        "test",
+        "regression",
+        "login"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 4.382,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Navigate to https://example.test/login",
+            "Enter username: test.user@example.com",
+            "Enter valid password",
+            "Click Login button",
+            "Verify dashboard is displayed"
+          ]
+        },
+        {
+          "result": "User logged in successfully"
+        }
+      ]
+    },
+    {
+      "nodeid": "tests/test_login.py::test_login_invalid_password",
+      "lineno": 10,
+      "outcome": "failed",
+      "keywords": [
+        "test",
+        "regression",
+        "login"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 5.121,
+        "outcome": "failed",
+        "crash": {
+          "path": "tests/test_login.py",
+          "lineno": 42,
+          "message": "Expected: Invalid username or password\nActual: Something went wrong. Please try again."
+        },
+        "traceback": [
+          {
+            "path": "tests/test_login.py",
+            "lineno": 42,
+            "message": "java.lang.AssertionError: Expected invalid credentials message was not displayed\n    at tests.LoginTests.testInvalidPassword(LoginTests.java:87)"
+          }
+        ]
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Navigate to login page",
+            "Enter username: test.user@example.com",
+            "Enter invalid password",
+            "Click Login button",
+            "Verify invalid credentials message"
+          ]
+        },
+        {
+          "result": "Expected error message was not displayed"
+        }
+      ]
+    },
+    {
+      "nodeid": "tests/test_search.py::test_search_product",
+      "lineno": 10,
+      "outcome": "passed",
+      "keywords": [
+        "test",
+        "regression",
+        "search"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 3.765,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Open product search page",
+            "Search for \"Wireless Headphones\"",
+            "Submit search",
+            "Verify search results are returned",
+            "Verify first result contains requested keyword"
+          ]
+        },
+        {
+          "result": "Search returned 24 matching products"
+        }
+      ]
+    },
+    {
+      "nodeid": "tests/test_search.py::test_search_filters",
+      "lineno": 10,
+      "outcome": "skipped",
+      "keywords": [
+        "test",
+        "regression",
+        "search"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.0,
+        "outcome": "skipped",
+        "longrepr": "Required pricing test data could not be loaded."
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Open product search page",
+            "Apply price filter"
+          ]
+        },
+        {
+          "result": "Skipped because test data service was unavailable"
+        }
+      ]
+    },
+    {
+      "nodeid": "tests/test_checkout.py::test_checkout_success",
+      "lineno": 10,
+      "outcome": "passed",
+      "keywords": [
+        "test",
+        "regression",
+        "checkout"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 8.921,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Add product to cart",
+            "Open shopping cart",
+            "Click Checkout",
+            "Enter shipping information",
+            "Enter payment details",
+            "Submit order",
+            "Verify confirmation number is displayed"
+          ]
+        },
+        {
+          "result": "Order created successfully: ORD-20261006-1842"
+        }
+      ]
+    },
+    {
+      "nodeid": "tests/test_checkout.py::test_checkout_declined_card",
+      "lineno": 10,
+      "outcome": "failed",
+      "keywords": [
+        "test",
+        "regression",
+        "checkout"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 7.11,
+        "outcome": "failed",
+        "crash": {
+          "path": "tests/test_checkout.py",
+          "lineno": 42,
+          "message": "Expected HTTP status: 402\nActual HTTP status: 500"
+        },
+        "traceback": [
+          {
+            "path": "tests/test_checkout.py",
+            "lineno": 42,
+            "message": "java.lang.AssertionError: Unexpected payment response status\n    at tests.CheckoutTests.testDeclinedCreditCard(CheckoutTests.java:142)"
+          }
+        ]
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Add product to cart",
+            "Navigate to checkout",
+            "Enter declined test credit card",
+            "Submit payment",
+            "Verify payment declined message"
+          ]
+        },
+        {
+          "result": "Payment API returned HTTP 500 instead of expected HTTP 402"
+        }
+      ]
+    },
+    {
+      "nodeid": "tests/test_profile.py::test_profile_update",
+      "lineno": 10,
+      "outcome": "passed",
+      "keywords": [
+        "test",
+        "regression",
+        "profile"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 5.23,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Login as existing user",
+            "Navigate to Profile",
+            "Update phone number",
+            "Click Save",
+            "Refresh page",
+            "Verify updated phone number persists"
+          ]
+        },
+        {
+          "result": "Profile updated successfully"
+        }
+      ]
+    },
+    {
+      "nodeid": "tests/test_profile.py::test_profile_upload_photo",
+      "lineno": 10,
+      "outcome": "skipped",
+      "keywords": [
+        "test",
+        "regression",
+        "profile"
+      ],
+      "setup": {
+        "duration": 0.05,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.0,
+        "outcome": "skipped",
+        "longrepr": "PROFILE_IMAGE_UPLOAD=false"
+      },
+      "teardown": {
+        "duration": 0.02,
+        "outcome": "passed"
+      },
+      "user_properties": [
+        {
+          "steps": [
+            "Navigate to Profile",
+            "Open profile photo upload dialog"
+          ]
+        },
+        {
+          "result": "Skipped because image upload feature flag is disabled in QA"
+        }
+      ]
+    }
+  ]
+}

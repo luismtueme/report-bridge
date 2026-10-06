@@ -59,7 +59,8 @@ Framework JSON/XML  →  IR  →  Cucumber | Allure-like | Extent-like
 | pytest JSON | `pytest --json-report` | `pytest-json-report` plugin |
 
 Hand-written demos: `public/samples/`  
-Real runner outputs: `public/samples/real/`
+Real runner outputs: `public/samples/real/`  
+Shared all-format pack (same 8-case story across tools): `public/samples/user-all-formats/`
 
 ### Regenerate real artifacts (optional)
 

@@ -1,0 +1,76 @@
+{
+  "uuid": "016ef694-cd1d-4dfd-86f8-9cbbd12529ae",
+  "historyId": "checkout-success",
+  "testCaseId": "checkout-success",
+  "fullName": "tests.CheckoutTests.checkout_success",
+  "name": "Successful checkout",
+  "status": "passed",
+  "stage": "finished",
+  "steps": [
+    {
+      "name": "Add product to cart",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510000,
+      "stop": 1791319511274
+    },
+    {
+      "name": "Open shopping cart",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510100,
+      "stop": 1791319511374
+    },
+    {
+      "name": "Click Checkout",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510200,
+      "stop": 1791319511474
+    },
+    {
+      "name": "Enter shipping information",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510300,
+      "stop": 1791319511574
+    },
+    {
+      "name": "Enter payment details",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510400,
+      "stop": 1791319511674
+    },
+    {
+      "name": "Submit order",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510500,
+      "stop": 1791319511774
+    },
+    {
+      "name": "Verify confirmation number is displayed",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1791319510600,
+      "stop": 1791319511874
+    }
+  ],
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Checkout"
+    },
+    {
+      "name": "framework",
+      "value": "sample-automation"
+    },
+    {
+      "name": "environment",
+      "value": "QA"
+    }
+  ],
+  "start": 1791319510000,
+  "stop": 1791319518921
+}
