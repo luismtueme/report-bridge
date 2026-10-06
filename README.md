@@ -60,7 +60,7 @@ Framework JSON/XML  →  IR  →  Cucumber | Allure-like | Extent-like
 
 Hand-written demos: `public/samples/`  
 Real runner outputs: `public/samples/real/`  
-Shared all-format pack (same 8-case story across tools): `public/samples/user-all-formats/`
+Cross-format validation pack (same 8-case story): `public/samples/user-all-formats/` (used by `npx tsx scripts/validate-user-samples.ts`, not shown as UI buttons)
 
 ### Regenerate real artifacts (optional)
 
