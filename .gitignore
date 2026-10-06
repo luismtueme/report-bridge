@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+__pycache__/
+.pytest_cache/
 
 # Real-report generator caches
 tools/real-reports/junit/target

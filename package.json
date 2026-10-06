@@ -1,7 +1,32 @@
 {
   "name": "reportbridge",
-  "private": true,
   "version": "0.1.0",
+  "private": false,
+  "description": "Import test automation results into a shared IR and preview Cucumber-style, Allure-like, and Extent-like reports.",
+  "license": "MIT",
+  "author": "Luis Alberto Morales Tueme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luismtueme/report-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luismtueme/report-bridge/issues"
+  },
+  "homepage": "https://github.com/luismtueme/report-bridge#readme",
+  "keywords": [
+    "test-reporting",
+    "allure",
+    "cucumber",
+    "playwright",
+    "jest",
+    "junit",
+    "pytest",
+    "mcp",
+    "intermediate-representation"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
