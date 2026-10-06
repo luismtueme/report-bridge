@@ -32,6 +32,24 @@ npm run test:imports
 npm run build
 ```
 
+Optional deeper check (cross-format pack, not shown in the UI):
+
+```bash
+npx tsx scripts/validate-user-samples.ts
+```
+
+## Sample fixtures (what the UI buttons mean)
+
+ReportBridge ships three kinds of fixtures. Only the first two appear as buttons.
+
+| Kind | UI | Location | What it is |
+| --- | --- | --- | --- |
+| **Synthetic** | First row (`Cucumber`, `JUnit XML`, …) | `public/samples/*` (top-level files + `allure/`) | Hand-written demos shaped like each format. Best for a quick “does this skin look right?” check. |
+| **Real** | Second row (`Real Cucumber`, …) | `public/samples/real/` | Artifacts produced by actually running frameworks (`npm run generate:real-reports`). Jest/pytest/JUnit run locally; Playwright/Cucumber/Allure hit [Sauce Demo](https://www.saucedemo.com/). Best for catching runner quirks. |
+| **Validation pack** | *Not in the UI* | `public/samples/user-all-formats/` | Same 8-case story exported in every supported format. Used by `scripts/validate-user-samples.ts` to regression-test importers. Upload those files yourself if you want to preview them in the UI. |
+
+**Synthetic vs Real in one line:** synthetic = hand-crafted examples; real = machine-generated outputs from real tools.
+
 ## What it does
 
 | Piece | Details |
@@ -53,14 +71,10 @@ Framework JSON/XML  →  IR  →  Cucumber | Allure-like | Extent-like
 | Cucumber JSON | `cucumber-report.json` | Feature / scenario / step JSON |
 | Allure results | `allure-results/*-result.json` | Upload one or many files |
 | JUnit XML | `TEST-*.xml`, CI junit export | Also covers many `pytest --junitxml` runs |
-| TestNG XML | `testng-results.xml` | Skips `is-config="true"` methods |
-| Playwright JSON | JSON reporter output | Uses last retry attempt |
-| Jest JSON | `jest --json --outputFile=…` | Maps pending / todo |
-| pytest JSON | `pytest --json-report` | `pytest-json-report` plugin |
-
-Hand-written demos: `public/samples/`  
-Real runner outputs: `public/samples/real/`  
-Cross-format validation pack (same 8-case story): `public/samples/user-all-formats/` (used by `npx tsx scripts/validate-user-samples.ts`, not shown as UI buttons)
+| TestNG XML | `testng-results.xml` | Skips `is-config="true"` methods; maps `reporter-output` lines to steps when present |
+| Playwright JSON | JSON reporter output | Uses last retry attempt; falls back to `stdout` lines as steps when native steps are missing |
+| Jest JSON | `jest --json --outputFile=…` | Maps pending / todo (often no step tree) |
+| pytest JSON | `pytest --json-report` | `pytest-json-report` plugin (often no step tree) |
 
 ### Regenerate real artifacts (optional)
 
@@ -79,9 +93,10 @@ UI e2e samples hit [Sauce Demo](https://www.saucedemo.com/) so you do not need y
 | `npm run dev` | Web UI on port **4732** |
 | `npm run build` | Production build |
 | `npm run preview` | Serve the production build |
-| `npm run test:imports` | Parse bundled fixtures into IR |
+| `npm run test:imports` | Parse bundled synthetic fixtures into IR |
 | `npm run mcp` | MCP server over stdio |
 | `npm run generate:real-reports` | Rebuild `public/samples/real/` |
+| `npx tsx scripts/validate-user-samples.ts` | Import every file in `public/samples/user-all-formats/` |
 
 ## MCP (optional)
 
@@ -109,8 +124,11 @@ Runs are stored **in memory** for that MCP process only.
 src/core/              IR, importers, summary, compare
 src/components/        Report skin renderers
 src/mcp/server.ts      MCP stdio server
-public/samples/        Synthetic + real fixtures
+public/samples/        Synthetic demos (UI row 1)
+public/samples/real/   Real runner outputs (UI row 2)
+public/samples/user-all-formats/  Cross-format validation pack (no UI buttons)
 tools/real-reports/    Generators for authentic artifacts
+scripts/               Import verification helpers
 ```
 
 ## Known limits (on purpose for MVP)
