@@ -1,0 +1,295 @@
+{
+  "config": {
+    "argv": [
+      "/exec-daemon/node",
+      "/workspace/tools/real-reports/node_modules/.bin/playwright",
+      "test",
+      "-c",
+      "playwright.config.js"
+    ],
+    "configFile": "/workspace/tools/real-reports/playwright.config.js",
+    "rootDir": "/workspace/tools/real-reports/playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/workspace/tools/real-reports/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/workspace/tools/real-reports/playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../public/samples/real/playwright-report.json"
+        }
+      ],
+      [
+        "/workspace/tools/real-reports/node_modules/allure-playwright/dist/cjs/index.js",
+        {
+          "resultsDir": "../../public/samples/real/allure-results"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "saucedemo.spec.js",
+      "file": "saucedemo.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Sauce Demo login",
+          "file": "saucedemo.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "signs in with valid credentials @smoke",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 348,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T15:48:49.943Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "392e42d63633ac7f010b-06a3296f7e7e3db7f1c2",
+              "file": "saucedemo.spec.js",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "shows error for locked out user @auth",
+              "ok": true,
+              "tags": [
+                "auth"
+              ],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 245,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T15:48:50.360Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "392e42d63633ac7f010b-0c555bba9b3ff3d9566d",
+              "file": "saucedemo.spec.js",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "intentionally wrong assertion for failure sample",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5233,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.title')\nExpected: \u001b[32m\"Inventory\"\u001b[39m\nReceived: \u001b[31m\"Products\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.title') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.title')\u001b[22m\n\u001b[2m    13 × locator resolved to <span class=\"title\" data-test=\"title\">Products</span>\u001b[22m\n\u001b[2m       - unexpected value \"Products\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.title')\nExpected: \u001b[32m\"Inventory\"\u001b[39m\nReceived: \u001b[31m\"Products\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.title') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.title')\u001b[22m\n\u001b[2m    13 × locator resolved to <span class=\"title\" data-test=\"title\">Products</span>\u001b[22m\n\u001b[2m       - unexpected value \"Products\"\u001b[22m\n\n    at /workspace/tools/real-reports/playwright/saucedemo.spec.js:29:42",
+                        "location": {
+                          "file": "/workspace/tools/real-reports/playwright/saucedemo.spec.js",
+                          "column": 42,
+                          "line": 29
+                        },
+                        "snippet": "  27 |     await page.locator(\"[data-test=login-button]\").click();\n  28 |     // Real failure for importer testing\n> 29 |     await expect(page.locator(\".title\")).toHaveText(\"Inventory\");\n     |                                          ^\n  30 |   });\n  31 |\n  32 |   test.skip(\"checkout flow not covered in smoke pack\", async () => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/workspace/tools/real-reports/playwright/saucedemo.spec.js",
+                            "column": 42,
+                            "line": 29
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.title')\nExpected: \u001b[32m\"Inventory\"\u001b[39m\nReceived: \u001b[31m\"Products\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.title') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.title')\u001b[22m\n\u001b[2m    13 × locator resolved to <span class=\"title\" data-test=\"title\">Products</span>\u001b[22m\n\u001b[2m       - unexpected value \"Products\"\u001b[22m\n\n\n  27 |     await page.locator(\"[data-test=login-button]\").click();\n  28 |     // Real failure for importer testing\n> 29 |     await expect(page.locator(\".title\")).toHaveText(\"Inventory\");\n     |                                          ^\n  30 |   });\n  31 |\n  32 |   test.skip(\"checkout flow not covered in smoke pack\", async () => {\n    at /workspace/tools/real-reports/playwright/saucedemo.spec.js:29:42"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T15:48:50.616Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/tools/real-reports/test-results/saucedemo-Sauce-Demo-login-ad1c7-ssertion-for-failure-sample/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/workspace/tools/real-reports/test-results/saucedemo-Sauce-Demo-login-ad1c7-ssertion-for-failure-sample/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/workspace/tools/real-reports/playwright/saucedemo.spec.js",
+                        "column": 42,
+                        "line": 29
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "392e42d63633ac7f010b-e22141ee213fcb942f59",
+              "file": "saucedemo.spec.js",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "checkout flow not covered in smoke pack",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 45000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/workspace/tools/real-reports/playwright/saucedemo.spec.js",
+                        "line": 32,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-06T15:48:55.887Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "/workspace/tools/real-reports/playwright/saucedemo.spec.js",
+                            "line": 32,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "392e42d63633ac7f010b-440b212abf77189f2100",
+              "file": "saucedemo.spec.js",
+              "line": 32,
+              "column": 8
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-06T15:48:49.588Z",
+    "duration": 6310.401,
+    "expected": 2,
+    "skipped": 1,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

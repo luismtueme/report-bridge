@@ -37,23 +37,23 @@ export function detectFormatFromText(text: string): DetectedFormat {
 export function detectFormat(input: unknown): DetectedFormat {
   if (Array.isArray(input)) {
     if (input.length === 0) return "unknown";
-    if (input.every((item) => isAllureResult(item))) return "allure";
     const first = input[0] as Record<string, unknown> | undefined;
     if (first && (first.elements || first.uri || first.keyword === "Feature")) {
       return "cucumber";
     }
+    if (input.every((item) => isAllureResult(item))) return "allure";
     if (first && isAllureResult(first)) return "allure";
   }
 
   if (input && typeof input === "object") {
-    if (isJestJson(input)) return "jest";
-    if (isPytestJson(input)) return "pytest";
-    if (isPlaywrightJson(input)) return "playwright";
-    if (isAllureResult(input)) return "allure";
     const record = input as Record<string, unknown>;
     if (record.elements || record.uri || record.keyword === "Feature") {
       return "cucumber";
     }
+    if (isJestJson(input)) return "jest";
+    if (isPytestJson(input)) return "pytest";
+    if (isPlaywrightJson(input)) return "playwright";
+    if (isAllureResult(input)) return "allure";
   }
 
   return "unknown";

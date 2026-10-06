@@ -1,0 +1,174 @@
+[
+  {
+    "description": "  Shoppers can browse products after signing in.",
+    "elements": [
+      {
+        "description": "",
+        "id": "sauce-demo-catalog;successful-login-shows-products",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Successful login shows products",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 174833570
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "the shopper opens Sauce Demo",
+            "match": {
+              "location": "cucumber/steps.js:10"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 91010435
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "they sign in as \"standard_user\"",
+            "match": {
+              "location": "cucumber/steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 46800996
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "the products title is shown",
+            "match": {
+              "location": "cucumber/steps.js:22"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 4
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "sauce-demo-catalog;locked-user-cannot-sign-in",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Locked user cannot sign in",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 155503020
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 12,
+            "name": "the shopper opens Sauce Demo",
+            "match": {
+              "location": "cucumber/steps.js:10"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 83285265
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "they sign in as \"locked_out_user\"",
+            "match": {
+              "location": "cucumber/steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 15168673
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "a lockout error is shown",
+            "match": {
+              "location": "cucumber/steps.js:28"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@negative",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "sauce-demo-catalog;wrong-title-expectation-fails",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "Wrong title expectation fails",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 166907289
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 17,
+            "name": "the shopper opens Sauce Demo",
+            "match": {
+              "location": "cucumber/steps.js:10"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 77733874
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 18,
+            "name": "they sign in as \"standard_user\"",
+            "match": {
+              "location": "cucumber/steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "failed",
+              "duration": 33487841,
+              "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'Products'\n- 'Inventory'\n\n    + expected - actual\n\n    -Products\n    +Inventory\n\n    at World.<anonymous> (/workspace/tools/real-reports/cucumber/steps.js:36:10)"
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "the title is \"Inventory\"",
+            "match": {
+              "location": "cucumber/steps.js:34"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "sauce-demo-catalog",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Sauce Demo catalog",
+    "tags": [],
+    "uri": "cucumber/features/catalog.feature"
+  }
+]

@@ -33,6 +33,23 @@ const SAMPLE_BUTTONS: Array<{ id: SampleId; label: string }> = [
   { id: "pytest", label: "pytest" },
 ];
 
+type RealSampleId =
+  | "real-cucumber"
+  | "real-allure"
+  | "real-junit"
+  | "real-jest"
+  | "real-playwright"
+  | "real-pytest";
+
+const REAL_SAMPLE_BUTTONS: Array<{ id: RealSampleId; label: string }> = [
+  { id: "real-cucumber", label: "Real Cucumber" },
+  { id: "real-allure", label: "Real Allure" },
+  { id: "real-junit", label: "Real JUnit" },
+  { id: "real-jest", label: "Real Jest" },
+  { id: "real-playwright", label: "Real Playwright" },
+  { id: "real-pytest", label: "Real pytest" },
+];
+
 async function loadTextSample(
   path: string,
   name: string,
@@ -57,7 +74,20 @@ async function loadAllureSample(): Promise<TestRun> {
   return importAllureResults(results, { name: "Sample Allure run" });
 }
 
-async function loadSampleRun(id: SampleId): Promise<{ run: TestRun; label: string }> {
+async function loadRealAllureSample(): Promise<TestRun> {
+  const index = await fetch("/samples/real/allure-index.json");
+  const files = (await index.json()) as string[];
+  const results: AllureResult[] = [];
+  for (const file of files) {
+    const fileResponse = await fetch(`/samples/real/allure-results/${file}`);
+    results.push((await fileResponse.json()) as AllureResult);
+  }
+  return importAllureResults(results, { name: "Real Allure run (Sauce Demo)" });
+}
+
+async function loadSampleRun(
+  id: SampleId | RealSampleId,
+): Promise<{ run: TestRun; label: string }> {
   switch (id) {
     case "cucumber":
       return {
@@ -103,6 +133,51 @@ async function loadSampleRun(id: SampleId): Promise<{ run: TestRun; label: strin
         ),
         label: "Sample pytest-json-report",
       };
+    case "real-cucumber":
+      return {
+        run: await loadTextSample(
+          "/samples/real/cucumber-report.json",
+          "Real Cucumber run (Sauce Demo)",
+        ),
+        label: "Real Cucumber JSON · Sauce Demo",
+      };
+    case "real-allure":
+      return {
+        run: await loadRealAllureSample(),
+        label: "Real Allure results · Sauce Demo",
+      };
+    case "real-junit":
+      return {
+        run: await loadTextSample(
+          "/samples/real/junit-report.xml",
+          "Real JUnit Surefire run",
+        ),
+        label: "Real JUnit XML · Maven Surefire",
+      };
+    case "real-jest":
+      return {
+        run: await loadTextSample(
+          "/samples/real/jest-report.json",
+          "Real Jest run",
+        ),
+        label: "Real Jest JSON",
+      };
+    case "real-playwright":
+      return {
+        run: await loadTextSample(
+          "/samples/real/playwright-report.json",
+          "Real Playwright run (Sauce Demo)",
+        ),
+        label: "Real Playwright JSON · Sauce Demo",
+      };
+    case "real-pytest":
+      return {
+        run: await loadTextSample(
+          "/samples/real/pytest-report.json",
+          "Real pytest run",
+        ),
+        label: "Real pytest-json-report",
+      };
   }
 }
 
@@ -119,7 +194,9 @@ export default function App() {
   const [activeSkin, setActiveSkin] = useState<ReportSkinId>("cucumber");
   const [compareMode, setCompareMode] = useState(false);
   const [sourceLabel, setSourceLabel] = useState("Sample Cucumber JSON");
-  const [activeSample, setActiveSample] = useState<SampleId>("cucumber");
+  const [activeSample, setActiveSample] = useState<SampleId | RealSampleId>(
+    "cucumber",
+  );
 
   useEffect(() => {
     void (async () => {
@@ -138,7 +215,7 @@ export default function App() {
   const summary = useMemo(() => (run ? summarizeRun(run) : null), [run]);
   const notes = useMemo(() => (run ? skinComparisonNotes(run) : []), [run]);
 
-  async function loadSample(id: SampleId) {
+  async function loadSample(id: SampleId | RealSampleId) {
     setLoading(true);
     setError(null);
     try {
@@ -147,7 +224,11 @@ export default function App() {
       setSourceLabel(sample.label);
       setActiveSample(id);
       setActiveSkin(
-        id === "cucumber" ? "cucumber" : id === "allure" ? "allure" : "extent",
+        id.includes("cucumber")
+          ? "cucumber"
+          : id.includes("allure")
+            ? "allure"
+            : "extent",
       );
       setCompareMode(false);
     } catch (err) {
@@ -203,8 +284,22 @@ export default function App() {
             Extent-like reports before you commit to a stack.
           </p>
           <div className="hero-actions">
-            <div className="sample-row" role="group" aria-label="Sample formats">
+            <div className="sample-row" role="group" aria-label="Synthetic sample formats">
               {SAMPLE_BUTTONS.map((sample) => (
+                <button
+                  key={sample.id}
+                  type="button"
+                  className={
+                    activeSample === sample.id ? "btn primary" : "btn"
+                  }
+                  onClick={() => void loadSample(sample.id)}
+                >
+                  {sample.label}
+                </button>
+              ))}
+            </div>
+            <div className="sample-row" role="group" aria-label="Real framework artifacts">
+              {REAL_SAMPLE_BUTTONS.map((sample) => (
                 <button
                   key={sample.id}
                   type="button"

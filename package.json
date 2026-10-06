@@ -9,7 +9,8 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "mcp": "tsx src/mcp/server.ts",
-    "test:imports": "tsx scripts/verify-imports.ts"
+    "test:imports": "tsx scripts/verify-imports.ts",
+    "generate:real-reports": "bash tools/real-reports/generate.sh"
   },
   "bin": {
     "reportbridge-mcp": "./src/mcp/server.ts"

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="1" tests="4" time="0.021" timestamp="2026-10-06T15:48:48.718244+00:00" hostname="cursor"><testcase classname="pytest.test_pricing" name="test_member_discount" time="0.000" /><testcase classname="pytest.test_pricing" name="test_guest_price" time="0.000" /><testcase classname="pytest.test_pricing" name="test_empty_cart_guard" time="0.000"><failure message="assert 0 == 1&#10; +  where 0 = apply_discount(0, False)">def test_empty_cart_guard():
+        # Intentionally failing for a real pytest failure artifact
+&gt;       assert apply_discount(0, False) == 1
+E       assert 0 == 1
+E        +  where 0 = apply_discount(0, False)
+
+pytest/test_pricing.py:15: AssertionError</failure></testcase><testcase classname="pytest.test_pricing" name="test_export_csv_skipped" time="0.000"><skipped type="pytest.skip" message="demo only">/workspace/tools/real-reports/pytest/test_pricing.py:21: demo only</skipped></testcase></testsuite></testsuites>

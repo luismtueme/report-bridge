@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Real-report generator caches
+tools/real-reports/junit/target
+tools/real-reports/test-results
+tools/real-reports/playwright-report
+tools/real-reports/blob-report
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

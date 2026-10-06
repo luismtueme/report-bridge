@@ -174,9 +174,14 @@ export function parseAllureResultsText(
 export function isAllureResult(value: unknown): value is AllureResult {
   if (!value || typeof value !== "object") return false;
   const record = value as Record<string, unknown>;
+  // Cucumber features also have `name`; require Allure-specific signals.
+  if (record.elements || record.uri || record.keyword === "Feature") return false;
+  const hasAllureId =
+    typeof record.uuid === "string" || typeof record.historyId === "string";
+  const hasStatus = typeof record.status === "string";
   return (
     typeof record.name === "string" &&
-    (typeof record.status === "string" || record.status == null) &&
+    (hasAllureId || hasStatus) &&
     !Array.isArray(value)
   );
 }
