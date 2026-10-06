@@ -444,6 +444,32 @@ h5,
   font-size: 0.8rem;
 }
 
+.scenario-fullname,
+.empty-steps {
+  margin: 0.35rem 0 0.55rem;
+}
+
+.param-list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.55rem 0;
+}
+
+.param-list div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.param-list dt {
+  color: rgba(11, 21, 24, 0.55);
+}
+
+.param-list dd {
+  margin: 0;
+}
+
 .stack-block {
   background: rgba(11, 21, 24, 0.05);
   color: var(--ink-soft);

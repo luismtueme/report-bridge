@@ -89,7 +89,9 @@ function mapMethod(
     durationMs: Number.isFinite(durationMs) ? durationMs : undefined,
     tags: [className],
     errorMessage: exception
-      ? attr(exception, "class") ?? textContent(exception)
+      ? textContent(exception.message) ??
+        attr(exception, "class") ??
+        textContent(exception)
       : undefined,
     stackTrace: exception ? textContent(exception["full-stacktrace"]) : undefined,
     steps: [],
