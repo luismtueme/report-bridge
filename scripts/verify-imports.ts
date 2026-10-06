@@ -3,52 +3,108 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   importAllureResults,
+  importFromText,
   parseCucumberJsonText,
   summarizeRun,
   type AllureResult,
 } from "../src/core/index.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const read = (relative: string) =>
+  readFileSync(join(root, relative), "utf8");
 
-const cucumber = parseCucumberJsonText(
-  readFileSync(join(root, "public/samples/cucumber-report.json"), "utf8"),
-  { name: "Cucumber fixture" },
+const cucumber = summarizeRun(
+  parseCucumberJsonText(read("public/samples/cucumber-report.json"), {
+    name: "Cucumber fixture",
+  }),
 );
-const cucumberSummary = summarizeRun(cucumber);
 
-const allureFiles = [
-  "login-passed-result.json",
-  "login-failed-result.json",
-  "inventory-broken-result.json",
-  "inventory-skipped-result.json",
-];
-const allure = importAllureResults(
-  allureFiles.map(
-    (file) =>
-      JSON.parse(
-        readFileSync(join(root, "public/samples/allure", file), "utf8"),
-      ) as AllureResult,
+const allure = summarizeRun(
+  importAllureResults(
+    [
+      "login-passed-result.json",
+      "login-failed-result.json",
+      "inventory-broken-result.json",
+      "inventory-skipped-result.json",
+    ].map(
+      (file) =>
+        JSON.parse(read(`public/samples/allure/${file}`)) as AllureResult,
+    ),
+    { name: "Allure fixture" },
   ),
-  { name: "Allure fixture" },
 );
-const allureSummary = summarizeRun(allure);
+
+const junit = summarizeRun(
+  importFromText(read("public/samples/junit-report.xml"), {
+    name: "JUnit fixture",
+  }),
+);
+const testng = summarizeRun(
+  importFromText(read("public/samples/testng-report.xml"), {
+    name: "TestNG fixture",
+  }),
+);
+const jest = summarizeRun(
+  importFromText(read("public/samples/jest-report.json"), {
+    name: "Jest fixture",
+  }),
+);
+const playwright = summarizeRun(
+  importFromText(read("public/samples/playwright-report.json"), {
+    name: "Playwright fixture",
+  }),
+);
+const pytest = summarizeRun(
+  importFromText(read("public/samples/pytest-report.json"), {
+    name: "pytest fixture",
+  }),
+);
 
 const checks = [
-  cucumberSummary.total === 4,
-  cucumberSummary.counts.passed === 2,
-  cucumberSummary.counts.failed === 1,
-  cucumberSummary.counts.skipped === 1,
-  allureSummary.total === 4,
-  allureSummary.counts.passed === 1,
-  allureSummary.counts.failed === 1,
-  allureSummary.counts.broken === 1,
-  allureSummary.counts.skipped === 1,
+  cucumber.total === 4 && cucumber.counts.failed === 1,
+  allure.total === 4 && allure.counts.broken === 1,
+  junit.sourceFormat === "junit" &&
+    junit.total === 4 &&
+    junit.counts.failed === 1 &&
+    junit.counts.broken === 1 &&
+    junit.counts.skipped === 1,
+  testng.sourceFormat === "testng" &&
+    testng.total === 3 &&
+    testng.counts.passed === 1 &&
+    testng.counts.failed === 1 &&
+    testng.counts.skipped === 1,
+  jest.sourceFormat === "jest" &&
+    jest.total === 4 &&
+    jest.counts.failed === 1 &&
+    jest.counts.pending === 1,
+  playwright.sourceFormat === "playwright" &&
+    playwright.total === 4 &&
+    playwright.counts.failed === 1 &&
+    playwright.counts.broken === 1,
+  pytest.sourceFormat === "pytest" &&
+    pytest.total === 4 &&
+    pytest.counts.failed === 1 &&
+    pytest.counts.skipped === 1,
 ];
 
 if (checks.some((ok) => !ok)) {
-  console.error("Fixture import checks failed", { cucumberSummary, allureSummary });
+  console.error("Fixture import checks failed", {
+    cucumber,
+    allure,
+    junit,
+    testng,
+    jest,
+    playwright,
+    pytest,
+  });
   process.exit(1);
 }
 
 console.log("Fixture import checks passed");
-console.log(JSON.stringify({ cucumberSummary, allureSummary }, null, 2));
+console.log(
+  JSON.stringify(
+    { cucumber, allure, junit, testng, jest, playwright, pytest },
+    null,
+    2,
+  ),
+);

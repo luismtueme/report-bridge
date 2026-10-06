@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="checkout-ci" tests="4" failures="1" errors="1" skipped="1" time="3.210">
+  <testsuite name="com.shop.CheckoutTest" tests="3" failures="1" errors="0" skipped="1" time="2.100">
+    <testcase classname="com.shop.CheckoutTest" name="successfulPurchase" time="1.150"/>
+    <testcase classname="com.shop.CheckoutTest" name="expiredCardIsRejected" time="0.820">
+      <failure message="expected banner &quot;Card expired&quot;" type="AssertionError">
+AssertionError: expected banner "Card expired"
+  at CheckoutTest.expiredCardIsRejected(CheckoutTest.java:44)
+      </failure>
+    </testcase>
+    <testcase classname="com.shop.CheckoutTest" name="guestCheckoutDemo" time="0.000">
+      <skipped message="Not enabled in demo"/>
+    </testcase>
+  </testsuite>
+  <testsuite name="com.shop.SearchTest" tests="1" failures="0" errors="1" skipped="0" time="1.110">
+    <testcase classname="com.shop.SearchTest" name="searchBySku" time="1.110">
+      <error message="NullPointerException" type="java.lang.NullPointerException">
+java.lang.NullPointerException: catalog client was null
+  at SearchTest.searchBySku(SearchTest.java:21)
+      </error>
+    </testcase>
+  </testsuite>
+</testsuites>

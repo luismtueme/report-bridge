@@ -97,7 +97,16 @@ export const SuiteSchema: z.ZodType<Suite> = z.lazy(() =>
 export const RunMetaSchema = z.object({
   id: z.string(),
   name: z.string(),
-  sourceFormat: z.enum(["cucumber", "allure", "unknown"]),
+  sourceFormat: z.enum([
+    "cucumber",
+    "allure",
+    "junit",
+    "testng",
+    "playwright",
+    "jest",
+    "pytest",
+    "unknown",
+  ]),
   importedAt: z.string(),
   environment: z.record(z.string(), z.string()).optional(),
 });

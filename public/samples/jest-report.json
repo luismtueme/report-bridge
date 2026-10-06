@@ -1,0 +1,62 @@
+{
+  "numFailedTestSuites": 1,
+  "numFailedTests": 1,
+  "numPassedTestSuites": 1,
+  "numPassedTests": 2,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 1,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 2,
+  "numTotalTests": 4,
+  "startTime": 1710000100000,
+  "success": false,
+  "testResults": [
+    {
+      "name": "/repo/src/checkout.test.ts",
+      "status": "failed",
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Checkout"],
+          "fullName": "Checkout applies member discount",
+          "title": "applies member discount",
+          "status": "passed",
+          "duration": 42,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": ["Checkout"],
+          "fullName": "Checkout rejects empty cart",
+          "title": "rejects empty cart",
+          "status": "failed",
+          "duration": 18,
+          "failureMessages": [
+            "Error: expect(received).toBe(expected)\n\nExpected: true\nReceived: false"
+          ]
+        },
+        {
+          "ancestorTitles": ["Checkout"],
+          "fullName": "Checkout supports gift notes",
+          "title": "supports gift notes",
+          "status": "pending",
+          "duration": 0,
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "name": "/repo/src/search.test.ts",
+      "status": "passed",
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Search"],
+          "fullName": "Search finds SKU",
+          "title": "finds SKU",
+          "status": "passed",
+          "duration": 11,
+          "failureMessages": []
+        }
+      ]
+    }
+  ]
+}

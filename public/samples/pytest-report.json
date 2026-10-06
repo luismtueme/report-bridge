@@ -1,0 +1,77 @@
+{
+  "created": 1710000200.12,
+  "duration": 2.45,
+  "exitcode": 1,
+  "root": "/repo",
+  "environment": {
+    "Python": "3.12.2",
+    "Platform": "Linux"
+  },
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "skipped": 1,
+    "error": 0,
+    "total": 4
+  },
+  "collectors": [],
+  "tests": [
+    {
+      "nodeid": "tests/test_checkout.py::test_successful_purchase",
+      "lineno": 10,
+      "outcome": "passed",
+      "keywords": {
+        "test_successful_purchase": 1,
+        "smoke": 1,
+        "tests/test_checkout.py": 1
+      },
+      "setup": { "duration": 0.01, "outcome": "passed" },
+      "call": { "duration": 0.42, "outcome": "passed" },
+      "teardown": { "duration": 0.01, "outcome": "passed" }
+    },
+    {
+      "nodeid": "tests/test_checkout.py::test_expired_card",
+      "lineno": 24,
+      "outcome": "failed",
+      "keywords": {
+        "test_expired_card": 1,
+        "payments": 1,
+        "tests/test_checkout.py": 1
+      },
+      "setup": { "duration": 0.01, "outcome": "passed" },
+      "call": {
+        "duration": 0.55,
+        "outcome": "failed",
+        "longrepr": "AssertionError: assert 'Something went wrong' == 'Card expired'"
+      },
+      "teardown": { "duration": 0.01, "outcome": "passed" }
+    },
+    {
+      "nodeid": "tests/test_search.py::test_find_sku",
+      "lineno": 8,
+      "outcome": "passed",
+      "keywords": {
+        "test_find_sku": 1,
+        "tests/test_search.py": 1
+      },
+      "setup": { "duration": 0.01, "outcome": "passed" },
+      "call": { "duration": 0.2, "outcome": "passed" },
+      "teardown": { "duration": 0.01, "outcome": "passed" }
+    },
+    {
+      "nodeid": "tests/test_search.py::test_guest_export",
+      "lineno": 20,
+      "outcome": "skipped",
+      "keywords": {
+        "test_guest_export": 1,
+        "wip": 1,
+        "tests/test_search.py": 1
+      },
+      "setup": {
+        "duration": 0.0,
+        "outcome": "skipped",
+        "longrepr": "Skipped: demo only"
+      }
+    }
+  ]
+}

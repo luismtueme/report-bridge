@@ -1,0 +1,128 @@
+{
+  "config": {
+    "projects": [{ "name": "chromium" }]
+  },
+  "suites": [
+    {
+      "title": "chromium",
+      "suites": [
+        {
+          "title": "auth.spec.ts",
+          "file": "tests/auth.spec.ts",
+          "specs": [
+            {
+              "title": "signs in with valid credentials",
+              "ok": true,
+              "tags": ["@smoke"],
+              "tests": [
+                {
+                  "title": "signs in with valid credentials",
+                  "results": [
+                    {
+                      "status": "passed",
+                      "duration": 1240,
+                      "steps": [
+                        { "title": "Navigate to /login", "duration": 220 },
+                        { "title": "Fill credentials", "duration": 180 },
+                        { "title": "Assert dashboard", "duration": 90 }
+                      ],
+                      "attachments": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "shows lockout for locked account",
+              "ok": false,
+              "tags": ["@auth"],
+              "tests": [
+                {
+                  "title": "shows lockout for locked account",
+                  "results": [
+                    {
+                      "status": "failed",
+                      "duration": 980,
+                      "error": {
+                        "message": "Error: expect(locator).toHaveText(expected)\n\nExpected: Account locked\nReceived: Invalid credentials",
+                        "stack": "Error: expect(locator).toHaveText(expected)\n    at /tests/auth.spec.ts:41:22"
+                      },
+                      "steps": [
+                        { "title": "Navigate to /login", "duration": 200 },
+                        {
+                          "title": "Assert lockout banner",
+                          "duration": 120,
+                          "error": {
+                            "message": "Expected: Account locked"
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "test-results/locked.png"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "inventory.spec.ts",
+          "file": "tests/inventory.spec.ts",
+          "specs": [
+            {
+              "title": "filters by warehouse",
+              "ok": false,
+              "tests": [
+                {
+                  "title": "filters by warehouse",
+                  "results": [
+                    {
+                      "status": "timedOut",
+                      "duration": 30000,
+                      "error": {
+                        "message": "Timeout 30000ms exceeded while waiting for selector '[data-test=warehouse-filter]'"
+                      },
+                      "steps": [],
+                      "attachments": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "exports CSV",
+              "ok": true,
+              "tests": [
+                {
+                  "title": "exports CSV",
+                  "results": [
+                    {
+                      "status": "skipped",
+                      "duration": 0,
+                      "steps": [],
+                      "attachments": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "startTime": "2024-03-01T10:00:00.000Z",
+    "duration": 32220,
+    "expected": 1,
+    "unexpected": 1,
+    "flaky": 0,
+    "skipped": 1
+  }
+}

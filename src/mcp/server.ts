@@ -5,12 +5,10 @@ import {
   REPORT_SKINS,
   compareSkinsMarkdown,
   getRun,
-  importAllureResults,
   importFromText,
   listRuns,
   saveRun,
   summarizeRun,
-  type AllureResult,
   type ReportSkinId,
 } from "../core/index.ts";
 
@@ -32,30 +30,34 @@ server.registerTool(
   {
     title: "Import test results",
     description:
-      "Import Cucumber JSON text or Allure *-result.json content into ReportBridge IR and store the run.",
+      "Import test report text into ReportBridge IR. Supports Cucumber JSON, Allure *-result.json, JUnit XML, TestNG XML, Playwright JSON, Jest JSON, and pytest-json-report.",
     inputSchema: {
       content: z
         .string()
-        .describe("JSON text: a Cucumber report array/object, one Allure result, or an array of Allure results"),
+        .describe(
+          "Raw report text (JSON or XML). For multiple Allure result files, pass a JSON array of result objects.",
+        ),
       name: z.string().optional().describe("Optional display name for the run"),
       format: z
-        .enum(["auto", "cucumber", "allure"])
+        .enum([
+          "auto",
+          "cucumber",
+          "allure",
+          "junit",
+          "testng",
+          "playwright",
+          "jest",
+          "pytest",
+        ])
         .optional()
         .describe("Force a format, or auto-detect (default)"),
     },
   },
   async ({ content, name, format }) => {
-    const parsed = JSON.parse(content) as unknown;
-    const run =
-      format === "allure"
-        ? importAllureResults(
-            (Array.isArray(parsed) ? parsed : [parsed]) as AllureResult[],
-            { name },
-          )
-        : importFromText(content, {
-            name,
-            format: format === "cucumber" ? "cucumber" : undefined,
-          });
+    const run = importFromText(content, {
+      name,
+      format: format && format !== "auto" ? format : undefined,
+    });
     saveRun(run);
     const summary = summarizeRun(run);
     return {

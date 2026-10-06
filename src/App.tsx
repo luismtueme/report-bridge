@@ -5,7 +5,6 @@ import {
   type ReportSkinId,
 } from "./core/compare";
 import { importAllureResults, type AllureResult } from "./core/importers/allure";
-import { parseCucumberJsonText } from "./core/importers/cucumber";
 import { importFromText } from "./core/importers/detect";
 import type { TestRun } from "./core/ir";
 import { formatDuration, formatPassRate, summarizeRun } from "./core/summary";
@@ -15,12 +14,32 @@ import {
   ExtentSkin,
 } from "./components/ReportSkins";
 
-type SampleId = "cucumber" | "allure";
+type SampleId =
+  | "cucumber"
+  | "allure"
+  | "junit"
+  | "testng"
+  | "jest"
+  | "playwright"
+  | "pytest";
 
-async function loadCucumberSample(): Promise<TestRun> {
-  const response = await fetch("/samples/cucumber-report.json");
+const SAMPLE_BUTTONS: Array<{ id: SampleId; label: string }> = [
+  { id: "cucumber", label: "Cucumber" },
+  { id: "allure", label: "Allure" },
+  { id: "junit", label: "JUnit XML" },
+  { id: "testng", label: "TestNG XML" },
+  { id: "jest", label: "Jest" },
+  { id: "playwright", label: "Playwright" },
+  { id: "pytest", label: "pytest" },
+];
+
+async function loadTextSample(
+  path: string,
+  name: string,
+): Promise<TestRun> {
+  const response = await fetch(path);
   const text = await response.text();
-  return parseCucumberJsonText(text, { name: "Sample Cucumber run" });
+  return importFromText(text, { name });
 }
 
 async function loadAllureSample(): Promise<TestRun> {
@@ -38,6 +57,55 @@ async function loadAllureSample(): Promise<TestRun> {
   return importAllureResults(results, { name: "Sample Allure run" });
 }
 
+async function loadSampleRun(id: SampleId): Promise<{ run: TestRun; label: string }> {
+  switch (id) {
+    case "cucumber":
+      return {
+        run: await loadTextSample(
+          "/samples/cucumber-report.json",
+          "Sample Cucumber run",
+        ),
+        label: "Sample Cucumber JSON",
+      };
+    case "allure":
+      return { run: await loadAllureSample(), label: "Sample Allure results" };
+    case "junit":
+      return {
+        run: await loadTextSample("/samples/junit-report.xml", "Sample JUnit run"),
+        label: "Sample JUnit XML",
+      };
+    case "testng":
+      return {
+        run: await loadTextSample(
+          "/samples/testng-report.xml",
+          "Sample TestNG run",
+        ),
+        label: "Sample TestNG XML",
+      };
+    case "jest":
+      return {
+        run: await loadTextSample("/samples/jest-report.json", "Sample Jest run"),
+        label: "Sample Jest JSON",
+      };
+    case "playwright":
+      return {
+        run: await loadTextSample(
+          "/samples/playwright-report.json",
+          "Sample Playwright run",
+        ),
+        label: "Sample Playwright JSON",
+      };
+    case "pytest":
+      return {
+        run: await loadTextSample(
+          "/samples/pytest-report.json",
+          "Sample pytest run",
+        ),
+        label: "Sample pytest-json-report",
+      };
+  }
+}
+
 function SkinView({ skin, run }: { skin: ReportSkinId; run: TestRun }) {
   if (skin === "cucumber") return <CucumberSkin run={run} />;
   if (skin === "allure") return <AllureSkin run={run} />;
@@ -51,13 +119,14 @@ export default function App() {
   const [activeSkin, setActiveSkin] = useState<ReportSkinId>("cucumber");
   const [compareMode, setCompareMode] = useState(false);
   const [sourceLabel, setSourceLabel] = useState("Sample Cucumber JSON");
+  const [activeSample, setActiveSample] = useState<SampleId>("cucumber");
 
   useEffect(() => {
     void (async () => {
       try {
-        const sample = await loadCucumberSample();
-        setRun(sample);
-        setSourceLabel("Sample Cucumber JSON");
+        const sample = await loadSampleRun("cucumber");
+        setRun(sample.run);
+        setSourceLabel(sample.label);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load sample");
       } finally {
@@ -73,10 +142,14 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const next = id === "cucumber" ? await loadCucumberSample() : await loadAllureSample();
-      setRun(next);
-      setSourceLabel(id === "cucumber" ? "Sample Cucumber JSON" : "Sample Allure results");
-      setActiveSkin(id === "cucumber" ? "cucumber" : "allure");
+      const sample = await loadSampleRun(id);
+      setRun(sample.run);
+      setSourceLabel(sample.label);
+      setActiveSample(id);
+      setActiveSkin(
+        id === "cucumber" ? "cucumber" : id === "allure" ? "allure" : "extent",
+      );
+      setCompareMode(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load sample");
     } finally {
@@ -109,7 +182,7 @@ export default function App() {
       setError(
         err instanceof Error
           ? err.message
-          : "Could not import that file. Use Cucumber JSON or Allure *-result.json.",
+          : "Could not import that file. Supported: Cucumber, Allure, JUnit/TestNG XML, Playwright, Jest, pytest JSON.",
       );
     } finally {
       setLoading(false);
@@ -125,22 +198,30 @@ export default function App() {
           <p className="brand">ReportBridge</p>
           <h1>One test run. Three reporting styles.</h1>
           <p className="lede">
-            Import Cucumber JSON or Allure results into a shared IR, then preview
-            Cucumber-style, Allure-like, and Extent-like reports before you commit
-            to a stack.
+            Import Cucumber, Allure, JUnit/TestNG XML, Playwright, Jest, or pytest
+            results into a shared IR, then preview Cucumber-style, Allure-like, and
+            Extent-like reports before you commit to a stack.
           </p>
           <div className="hero-actions">
-            <button type="button" className="btn primary" onClick={() => void loadSample("cucumber")}>
-              Load Cucumber sample
-            </button>
-            <button type="button" className="btn" onClick={() => void loadSample("allure")}>
-              Load Allure sample
-            </button>
+            <div className="sample-row" role="group" aria-label="Sample formats">
+              {SAMPLE_BUTTONS.map((sample) => (
+                <button
+                  key={sample.id}
+                  type="button"
+                  className={
+                    activeSample === sample.id ? "btn primary" : "btn"
+                  }
+                  onClick={() => void loadSample(sample.id)}
+                >
+                  {sample.label}
+                </button>
+              ))}
+            </div>
             <label className="btn file-btn">
-              Upload JSON
+              Upload report
               <input
                 type="file"
-                accept="application/json,.json"
+                accept="application/json,.json,text/xml,application/xml,.xml"
                 multiple
                 onChange={(event) => void onUpload(event)}
               />
@@ -252,14 +333,17 @@ export default function App() {
       {!run && !loading ? (
         <section className="empty-state">
           <h2>No run loaded</h2>
-          <p>Load a sample or upload Cucumber JSON / Allure result files to begin.</p>
+          <p>
+            Load a sample or upload Cucumber, Allure, JUnit/TestNG XML, Playwright,
+            Jest, or pytest JSON to begin.
+          </p>
         </section>
       ) : null}
 
       <footer className="site-footer">
         <p>
-          ReportBridge MVP · IR + Cucumber/Allure import · three preview skins · MCP tools in{" "}
-          <code>src/mcp/server.ts</code>
+          ReportBridge · IR importers for common CI artifacts · three preview skins ·
+          MCP tools in <code>src/mcp/server.ts</code>
         </p>
       </footer>
     </div>

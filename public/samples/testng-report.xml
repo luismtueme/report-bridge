@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="1" failed="1" skipped="1">
+  <suite name="Shop Suite" duration-ms="2450">
+    <test name="Regression" duration-ms="2450">
+      <class name="com.shop.LoginTests">
+        <test-method status="PASS" name="validLogin" duration-ms="840" started-at="2024-03-01T10:00:00Z" finished-at="2024-03-01T10:00:01Z"/>
+        <test-method status="FAIL" name="lockedAccount" duration-ms="910" started-at="2024-03-01T10:00:01Z" finished-at="2024-03-01T10:00:02Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Expected text 'Account locked' but was 'Invalid credentials']]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Expected text 'Account locked' but was 'Invalid credentials'
+  at com.shop.LoginTests.lockedAccount(LoginTests.java:33)]]>
+            </full-stacktrace>
+          </exception>
+        </test-method>
+        <test-method status="SKIP" name="ssoLogin" duration-ms="0" started-at="2024-03-01T10:00:02Z" finished-at="2024-03-01T10:00:02Z"/>
+        <test-method status="PASS" name="beforeClass" is-config="true" duration-ms="120"/>
+      </class>
+    </test>
+  </suite>
+</testng-results>
