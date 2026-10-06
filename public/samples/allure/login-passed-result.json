@@ -1,0 +1,39 @@
+{
+  "uuid": "a1b2c3d4-0001",
+  "historyId": "login-valid",
+  "name": "Valid credentials sign the user in",
+  "fullName": "auth.LoginTest.validCredentials",
+  "status": "passed",
+  "stage": "finished",
+  "start": 1710000000000,
+  "stop": 1710000001840,
+  "description": "Happy-path login against the staging identity provider.",
+  "labels": [
+    { "name": "suite", "value": "Authentication" },
+    { "name": "feature", "value": "Login" },
+    { "name": "tag", "value": "smoke" },
+    { "name": "tag", "value": "auth" },
+    { "name": "severity", "value": "critical" }
+  ],
+  "steps": [
+    {
+      "name": "Open /login",
+      "status": "passed",
+      "start": 1710000000000,
+      "stop": 1710000000400
+    },
+    {
+      "name": "Submit email and password",
+      "status": "passed",
+      "start": 1710000000400,
+      "stop": 1710000001500
+    },
+    {
+      "name": "Assert dashboard heading",
+      "status": "passed",
+      "start": 1710000001500,
+      "stop": 1710000001840
+    }
+  ],
+  "attachments": []
+}

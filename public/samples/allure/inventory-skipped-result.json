@@ -1,0 +1,17 @@
+{
+  "uuid": "a1b2c3d4-0004",
+  "historyId": "inventory-export",
+  "name": "Export inventory CSV is skipped in demo",
+  "fullName": "inventory.ExportTest.csv",
+  "status": "skipped",
+  "stage": "finished",
+  "start": 1710000005000,
+  "stop": 1710000005000,
+  "labels": [
+    { "name": "suite", "value": "Inventory" },
+    { "name": "feature", "value": "Export" },
+    { "name": "tag", "value": "wip" }
+  ],
+  "steps": [],
+  "attachments": []
+}

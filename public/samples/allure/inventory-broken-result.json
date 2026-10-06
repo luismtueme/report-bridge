@@ -1,0 +1,41 @@
+{
+  "uuid": "a1b2c3d4-0003",
+  "historyId": "inventory-filter",
+  "name": "Filter inventory by warehouse",
+  "fullName": "inventory.FilterTest.byWarehouse",
+  "status": "broken",
+  "stage": "finished",
+  "start": 1710000004000,
+  "stop": 1710000004550,
+  "labels": [
+    { "name": "suite", "value": "Inventory" },
+    { "name": "feature", "value": "Filters" },
+    { "name": "tag", "value": "inventory" },
+    { "name": "severity", "value": "minor" }
+  ],
+  "statusDetails": {
+    "message": "TimeoutError: Waiting for selector '[data-test=warehouse-filter]' failed",
+    "trace": "TimeoutError: Waiting for selector '[data-test=warehouse-filter]' failed\n    at FilterPage.open (filter.page.ts:18:5)"
+  },
+  "steps": [
+    {
+      "name": "Navigate to inventory",
+      "status": "passed",
+      "start": 1710000004000,
+      "stop": 1710000004300
+    },
+    {
+      "name": "Open warehouse filter",
+      "status": "broken",
+      "start": 1710000004300,
+      "stop": 1710000004550,
+      "statusDetails": {
+        "message": "TimeoutError: Waiting for selector '[data-test=warehouse-filter]' failed"
+      }
+    }
+  ],
+  "parameters": [
+    { "name": "warehouse", "value": "east-2" }
+  ],
+  "attachments": []
+}

@@ -1,0 +1,36 @@
+{
+  "name": "reportbridge",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "mcp": "tsx src/mcp/server.ts",
+    "test:imports": "tsx scripts/verify-imports.ts"
+  },
+  "bin": {
+    "reportbridge-mcp": "./src/mcp/server.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "concurrently": "^10.0.5",
+    "oxlint": "^1.81.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

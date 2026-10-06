@@ -1,0 +1,51 @@
+{
+  "uuid": "a1b2c3d4-0002",
+  "historyId": "login-locked",
+  "name": "Locked account shows lockout message",
+  "fullName": "auth.LoginTest.lockedAccount",
+  "status": "failed",
+  "stage": "finished",
+  "start": 1710000002000,
+  "stop": 1710000003120,
+  "labels": [
+    { "name": "suite", "value": "Authentication" },
+    { "name": "feature", "value": "Login" },
+    { "name": "tag", "value": "auth" },
+    { "name": "tag", "value": "negative" },
+    { "name": "severity", "value": "normal" }
+  ],
+  "statusDetails": {
+    "message": "Expected text 'Account locked' but was 'Invalid credentials'",
+    "trace": "AssertionError: Expected text 'Account locked' but was 'Invalid credentials'\n    at assertLockMessage (login.spec.ts:42:10)"
+  },
+  "steps": [
+    {
+      "name": "Open /login",
+      "status": "passed",
+      "start": 1710000002000,
+      "stop": 1710000002300
+    },
+    {
+      "name": "Submit locked account credentials",
+      "status": "passed",
+      "start": 1710000002300,
+      "stop": 1710000002900
+    },
+    {
+      "name": "Assert lockout message",
+      "status": "failed",
+      "start": 1710000002900,
+      "stop": 1710000003120,
+      "statusDetails": {
+        "message": "Expected text 'Account locked' but was 'Invalid credentials'"
+      }
+    }
+  ],
+  "attachments": [
+    {
+      "name": "screenshot",
+      "source": "locked-account.png",
+      "type": "image/png"
+    }
+  ]
+}

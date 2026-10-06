@@ -1,0 +1,135 @@
+[
+  {
+    "id": "checkout",
+    "uri": "features/checkout.feature",
+    "keyword": "Feature",
+    "name": "Checkout",
+    "description": "Shoppers can purchase items with a valid payment method.",
+    "tags": [{ "name": "@checkout" }],
+    "elements": [
+      {
+        "id": "checkout;successful-purchase",
+        "keyword": "Scenario",
+        "name": "Successful purchase with saved card",
+        "description": "",
+        "type": "scenario",
+        "tags": [{ "name": "@smoke" }, { "name": "@payments" }],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the shopper has 2 items in the cart",
+            "result": { "status": "passed", "duration": 120000000 }
+          },
+          {
+            "keyword": "And ",
+            "name": "a saved Visa card is on file",
+            "result": { "status": "passed", "duration": 45000000 }
+          },
+          {
+            "keyword": "When ",
+            "name": "they confirm checkout",
+            "result": { "status": "passed", "duration": 880000000 }
+          },
+          {
+            "keyword": "Then ",
+            "name": "an order confirmation is shown",
+            "result": { "status": "passed", "duration": 150000000 }
+          }
+        ]
+      },
+      {
+        "id": "checkout;expired-card",
+        "keyword": "Scenario",
+        "name": "Rejected purchase with expired card",
+        "description": "",
+        "type": "scenario",
+        "tags": [{ "name": "@payments" }, { "name": "@negative" }],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the shopper has 1 item in the cart",
+            "result": { "status": "passed", "duration": 90000000 }
+          },
+          {
+            "keyword": "And ",
+            "name": "the saved card is expired",
+            "result": { "status": "passed", "duration": 30000000 }
+          },
+          {
+            "keyword": "When ",
+            "name": "they confirm checkout",
+            "result": { "status": "passed", "duration": 640000000 }
+          },
+          {
+            "keyword": "Then ",
+            "name": "a payment failure message is shown",
+            "result": {
+              "status": "failed",
+              "duration": 210000000,
+              "error_message": "AssertionError: Expected banner \"Card expired\" but found \"Something went wrong\""
+            }
+          }
+        ]
+      },
+      {
+        "id": "checkout;guest-skip",
+        "keyword": "Scenario",
+        "name": "Guest checkout is unavailable in demo",
+        "description": "",
+        "type": "scenario",
+        "tags": [{ "name": "@wip" }],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the shopper is not signed in",
+            "result": { "status": "skipped", "duration": 0 }
+          },
+          {
+            "keyword": "When ",
+            "name": "they choose guest checkout",
+            "result": { "status": "skipped", "duration": 0 }
+          },
+          {
+            "keyword": "Then ",
+            "name": "guest flow starts",
+            "result": { "status": "skipped", "duration": 0 }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "search",
+    "uri": "features/search.feature",
+    "keyword": "Feature",
+    "name": "Catalog search",
+    "description": "Customers can find products by keyword.",
+    "tags": [{ "name": "@search" }],
+    "elements": [
+      {
+        "id": "search;find-sku",
+        "keyword": "Scenario",
+        "name": "Find product by SKU",
+        "type": "scenario",
+        "tags": [{ "name": "@smoke" }],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "the catalog contains SKU \"SKU-1044\"",
+            "result": { "status": "passed", "duration": 50000000 }
+          },
+          {
+            "keyword": "When ",
+            "name": "the shopper searches for \"SKU-1044\"",
+            "result": { "status": "passed", "duration": 300000000 }
+          },
+          {
+            "keyword": "Then ",
+            "name": "exactly one product is returned",
+            "result": { "status": "passed", "duration": 40000000 }
+          }
+        ]
+      }
+    ]
+  }
+]
