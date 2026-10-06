@@ -32,3 +32,13 @@ fi
 
 echo "Generated:"
 find "$OUT" -maxdepth 2 -type f | sort
+
+# Keep a stable manifest for the web UI (no directory listing in Vite).
+python3 - <<PY
+from pathlib import Path
+import json
+root = Path("$OUT") / "allure-results"
+files = sorted(p.name for p in root.glob("*-result.json"))
+(Path("$OUT") / "allure-index.json").write_text(json.dumps(files, indent=2) + "\n")
+print(f"Wrote allure-index.json ({len(files)} results)")
+PY
