@@ -13,6 +13,6 @@
     "@cucumber/cucumber": "^13.3.0",
     "allure-playwright": "^3.13.0",
     "jest": "^30.5.2",
-    "playwright": "^1.63.0"
+    "playwright": "^1.64.0"
   }
 }
